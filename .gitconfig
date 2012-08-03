@@ -1,0 +1,7 @@
+[user]
+	name = Mahmoud Hossam
+	email = mahmoud.h.hanafy@gmail.com
+[color]
+	diff   = auto
+        status = auto
+        branch = auto
