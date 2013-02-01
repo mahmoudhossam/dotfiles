@@ -51,3 +51,6 @@ set softtabstop=4
 set shiftwidth=4
 
 filetype indent on
+
+" Run pathogen
+call pathogen#infect()
