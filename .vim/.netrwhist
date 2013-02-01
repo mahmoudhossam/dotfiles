@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/mhh91/Projects/django/tutorial'
+let g:netrw_dirhist_2='/home/mhh91/Projects/CS253/hw2/hw2/templates'
+let g:netrw_dirhist_3='/home/mhh91/Projects/CS253/blog/blog/templates'
+let g:netrw_dirhist_4='/home/mhh91/Projects/CS253/wiki/wiki'
+let g:netrw_dirhist_5='/home/mhh91/Projects/CS253/wiki/webapp'
+let g:netrw_dirhist_6='/home/mhh91/Projects/CS253/wiki/wiki'
+let g:netrw_dirhist_7='/home/mhh91/Projects/2ogra/api'
+let g:netrw_dirhist_8='/etc/ejabberd'
