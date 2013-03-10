@@ -1,4 +1,7 @@
-" Make vim more useful
+" Pathogen
+call pathogen#infect()
+call pathogen#helptags()
+ 
 set nocompatible
 " Enhance command-line completion
 set wildmenu
@@ -19,8 +22,8 @@ set noeol
 set number
 " Enable syntax highlighting
 syntax on
-" Make tabs as wide as two spaces
-set tabstop=8
+" Make tabs as wide as a space
+set tabstop=4
 " Highlight searches
 set hlsearch
 " Highlight dynamically as pattern is typed
@@ -46,11 +49,3 @@ set showcmd
 
 set expandtab
 
-set softtabstop=4
-
-set shiftwidth=4
-
-filetype indent on
-
-" Run pathogen
-call pathogen#infect()
