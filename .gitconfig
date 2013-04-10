@@ -2,17 +2,10 @@
 	name = Mahmoud Hossam
 	email = mahmoud.h.hanafy@gmail.com
 [color]
-	diff   = auto
-        status = auto
-        branch = auto
-[alias]
-	switch = !legit switch \"$@\"
-	branches = !legit branches
-	sprout = !legit sprout \"$@\"
-	unpublish = !legit unpublish \"$@\"
-	harvest = !legit harvest \"$@\"
-	sync = !legit sync \"$@\"
-	publish = !legit publish \"$@\"
-	graft = !legit graft \"$@\"
+    diff   = auto
+    status = auto
+    branch = auto
 [push]
 	default = simple
+[core]
+    editor = vim
