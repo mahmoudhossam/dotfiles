@@ -9,3 +9,7 @@
 	default = simple
 [core]
     editor = vim
+[instaweb]
+    browser = firefox
+    local = true
+

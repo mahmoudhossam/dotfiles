@@ -29,7 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git pip heroku archlinux django colored-man)
+plugins=(git git-extras pip heroku archlinux django colored-man go systemd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -39,3 +39,18 @@ export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 source ~/.autoenv/activate.sh
+
+# Set Go workspace
+export GOPATH=/home/mahmoud/Projects/Go
+
+# Virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+# Use Python 2.x
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
+# Use corresponding virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv2
+# Set up pip
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true
+# Start virtualenvwrapper
+source /usr/bin/virtualenvwrapper.sh
