@@ -36,6 +36,9 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/mahmoud/.gem/ruby/1.9.1/bin
 
+# Activate "Command Not Found"
+source /usr/share/doc/pkgfile/command-not-found.zsh
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 source ~/.autoenv/activate.sh
