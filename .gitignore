@@ -1,9 +1,2 @@
-*/
-.viminfo
-.face
-.pgpass
-.pulse/
-.bash_*
-.ICEauthority
-.Xauthority
-.psql_history
+*.py[co]
+__pycache__/*

@@ -9,6 +9,7 @@
 	default = simple
 [core]
     editor = vim
+	excludesfile = ~/.gitignore
 [instaweb]
     browser = chromium
     local = true
