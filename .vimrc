@@ -8,10 +8,11 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
 Bundle 'klen/python-mode'
-Bundle 'nvie/vim-flake8'
+Bundle 'scrooloose/syntastic'
 Bundle 'taglist.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'itchyny/lightline.vim'
+Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 
@@ -73,9 +74,6 @@ let g:pymode_indent = 1
 " Load rope plugin
 let g:pymode_rope = 1
 
-" Map keys for autocompletion
-let g:pymode_rope_autocomplete_map = '<C-Space>'
-
 " Auto create and open ropeproject
 let g:pymode_rope_auto_project = 1
 
@@ -89,10 +87,6 @@ let g:pymode_rope_autoimport_underlineds = 0
 
 let g:pymode_rope_codeassist_maxfixes = 10
 
-let g:pymode_rope_sorted_completions = 1
-
-let g:pymode_rope_extended_complete = 1
-
 let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
 
 let g:pymode_rope_confirm_saving = 1
@@ -101,13 +95,11 @@ let g:pymode_rope_global_prefix = "<C-x>p"
 
 let g:pymode_rope_local_prefix = "<C-c>r"
 
-let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_vim_completion = 0
 
 let g:pymode_rope_guess_project = 1
 
 let g:pymode_rope_goto_def_newwin = ""
-
-let g:pymode_rope_always_show_complete_menu = 0
 
 " Enable pymode's custom syntax highlighting
 let g:pymode_syntax = 1
@@ -163,9 +155,6 @@ let g:pymode_folding = 0
 " Disable pylint code plugin
 let g:pymode_lint = 0
 
-" Change flake8 max line length
-let g:flake8_max_line_length=99
-
 " Set NERDTREE shortcut
 nnoremap <silent> <F10> :NERDTreeToggle<CR>
 
@@ -177,3 +166,6 @@ nnoremap <silent> <F9> :TlistToggle<CR>
 
 " Use X clipboard
 set clipboard=unnamedplus
+
+" Use flake8
+let g:syntastic_python_checkers=['flake8']
