@@ -1,6 +1,7 @@
 [user]
 	name = Mahmoud Hossam
 	email = mahmoud.h.hanafy@gmail.com
+	signingkey = 958BBDC3
 [color]
     diff   = auto
     status = auto
@@ -11,6 +12,5 @@
     editor = vim
 	excludesfile = ~/.gitignore
 [instaweb]
-    browser = chromium
+    browser = google-chrome
     local = true
-

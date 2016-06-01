@@ -1,19 +1,19 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'klen/python-mode'
-Bundle 'scrooloose/syntastic'
-Bundle 'taglist.vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'itchyny/lightline.vim'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'klen/python-mode'
+Plugin 'scrooloose/syntastic'
+Plugin 'taglist.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'itchyny/lightline.vim'
 
+call vundle#end()
 filetype plugin indent on
 
 " Enhance command-line completion
