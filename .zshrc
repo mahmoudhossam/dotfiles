@@ -1,5 +1,5 @@
 # Use antigen
-source .antigen/antigen.zsh
+source ~/.antigen/antigen.zsh
 # Use xterm's 256 color support
 export TERM="xterm-256color"
 
@@ -33,7 +33,7 @@ antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/mahmoud/.gem/ruby/1.9.1/bin
+export PATH=PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/mahmoud/.gem/ruby/1.9.1/bin
 
 source '/usr/share/powerline/bindings/zsh/powerline.zsh'
 export POWERLINE_RIGHT_A="date"
@@ -57,3 +57,5 @@ export PIP_RESPECT_VIRTUALENV=true
 export PROJECT_HOME=$HOME/Projects
 # Start virtualenvwrapper
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+
+export WINEARCH=win32
