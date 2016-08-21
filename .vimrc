@@ -65,42 +65,6 @@ set expandtab
 " dialogue asking if you wish to save changed files.
 set confirm
 
-" Auto fix vim python paths if virtualenv enabled
-let g:pymode_virtualenv = 1
-
-" Enable pymode indentation
-let g:pymode_indent = 1
-
-" Load rope plugin
-let g:pymode_rope = 1
-
-" Auto create and open ropeproject
-let g:pymode_rope_auto_project = 1
-
-" Enable autoimport
-let g:pymode_rope_enable_autoimport = 1
-
-" Auto generate global cache
-let g:pymode_rope_autoimport_generate = 1
-
-let g:pymode_rope_autoimport_underlineds = 0
-
-let g:pymode_rope_codeassist_maxfixes = 10
-
-let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
-
-let g:pymode_rope_confirm_saving = 1
-
-let g:pymode_rope_global_prefix = "<C-x>p"
-
-let g:pymode_rope_local_prefix = "<C-c>r"
-
-let g:pymode_rope_vim_completion = 0
-
-let g:pymode_rope_guess_project = 1
-
-let g:pymode_rope_goto_def_newwin = ""
-
 " Enable pymode's custom syntax highlighting
 let g:pymode_syntax = 1
 
