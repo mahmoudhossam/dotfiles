@@ -1,19 +1,24 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'klen/python-mode'
-Plugin 'scrooloose/syntastic'
-Plugin 'taglist.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'Raimondi/delimitMate'
+Plug 'itchyny/lightline.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-sleuth'
+Plug 'Valloric/YouCompleteMe'
+Plug 'fatih/vim-go'
 
-call vundle#end()
+call plug#end()
+
 filetype plugin indent on
 
 " Enhance command-line completion
@@ -37,6 +42,8 @@ set number
 syntax on
 " Make tabs as wide as a space
 set tabstop=4
+" Set reindent '<<' and '>>' width
+set shiftwidth=4
 " Highlight searches
 set hlsearch
 " Highlight dynamically as pattern is typed
@@ -64,72 +71,47 @@ set expandtab
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
-
-" Enable pymode's custom syntax highlighting
-let g:pymode_syntax = 1
-
-" Enable all python highlightings
-let g:pymode_syntax_all = 1
-
-" Highlight "print" as a function
-let g:pymode_syntax_print_as_function = 0
-
-" Highlight indentation errors
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-
-" Highlight trailing spaces
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Highlight string formatting
-let g:pymode_syntax_string_formatting = g:pymode_syntax_all
-
-" Highlight str.format syntax
-let g:pymode_syntax_string_format = g:pymode_syntax_all
-
-" Highlight string.Template syntax
-let g:pymode_syntax_string_templates = g:pymode_syntax_all
-
-" Highlight doc-tests
-let g:pymode_syntax_doctests = g:pymode_syntax_all
-
-" Highlight builtin objects (__doc__, self, etc)
-let g:pymode_syntax_builtin_objs = g:pymode_syntax_all
-
-" Highlight builtin functions
-let g:pymode_syntax_builtin_funcs = g:pymode_syntax_all
-
-" Highlight exceptions
-let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all
-
-" Highlight equal operator
-let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all
-
-" Highlight stars operator
-let g:pymode_syntax_highlight_stars_operator = g:pymode_syntax_all
-
-" Highlight `self`
-let g:pymode_syntax_highlight_self = g:pymode_syntax_all
-
-" For fast machines
-let g:pymode_syntax_slow_sync = 0
-
-" Disable code folding
-let g:pymode_folding = 0
-
-" Disable pylint code plugin
-let g:pymode_lint = 0
-
+" Airline already shows this information, so disable it
+set noshowmode
 " Set NERDTREE shortcut
-nnoremap <silent> <F10> :NERDTreeToggle<CR>
-
+noremap  <Leader>n :NERDTreeToggle<CR>
+" Set Tagbar shortcut
+noremap <Leader>t :TagbarToggle<CR>
+" Easier tab switching
+nnoremap <Leader><Tab> :bn<CR>
+nnoremap <Leader><S-Tab> :bp<CR>
 " Set NERDTREE position
-let g:NERDTreeWinPos="right"
-
-" Set taglist shortcut
-nnoremap <silent> <F9> :TlistToggle<CR>
-
-" Use X clipboard
+let g:NERDTreeWinPos="left"
+" Go to previous (last accessed) window.
+autocmd VimEnter * wincmd p
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Make Syntastic use jshint
+let g:syntastic_javascript_checkers = ['jshint']
+" Use system clipboard
 set clipboard=unnamedplus
-
-" Use flake8
-let g:syntastic_python_checkers=['flake8']
+if !has('gui_running')
+    set t_Co=256
+endif
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&readonly?"":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+" fzf shortcuts
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>

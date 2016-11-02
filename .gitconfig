@@ -1,16 +1,15 @@
 [user]
-	name = Mahmoud Hossam
-	email = mahmoud.h.hanafy@gmail.com
-	signingkey = 958BBDC3
+    name = Mahmoud Hossam
+    email = mahmoud.h.hanafy@gmail.com
 [color]
     diff   = auto
     status = auto
     branch = auto
 [push]
-	default = simple
+    default = matching
 [core]
     editor = vim
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 [instaweb]
     browser = google-chrome
     local = true
