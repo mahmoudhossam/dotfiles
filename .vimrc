@@ -3,8 +3,6 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
@@ -14,8 +12,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sleuth'
-Plug 'Valloric/YouCompleteMe'
 Plug 'fatih/vim-go'
+Plug 'Valloric/YouCompleteMe'
+Plug 'python-mode/python-mode'
+Plug 'scrooloose/nerdcommenter'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -31,7 +32,7 @@ set ttyfast
 set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
-" Change mapleader
+" Set leader
 let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
@@ -50,8 +51,6 @@ set hlsearch
 set incsearch
 " Always show status line
 set laststatus=2
-" Enable mouse in all modes
-set mouse=a
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -73,21 +72,23 @@ set expandtab
 set confirm
 " Airline already shows this information, so disable it
 set noshowmode
-" Set NERDTREE shortcut
-noremap  <Leader>n :NERDTreeToggle<CR>
+" Treat underscore as a word boundary
+set iskeyword-=_
+" Don't require saving buffer contents before switching to another
+set hidden
 " Set Tagbar shortcut
 noremap <Leader>t :TagbarToggle<CR>
 " Easier tab switching
 nnoremap <Leader><Tab> :bn<CR>
 nnoremap <Leader><S-Tab> :bp<CR>
-" Set NERDTREE position
-let g:NERDTreeWinPos="left"
 " Go to previous (last accessed) window.
 autocmd VimEnter * wincmd p
-" Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Make Syntastic use jshint
 let g:syntastic_javascript_checkers = ['jshint']
+" Make Syntastic use flake8
+let g:syntastic_python_checkers = ['flake8']
+" Make YCM use venv python
+let g:ycm_python_binary_path = 'python'
 " Use system clipboard
 set clipboard=unnamedplus
 if !has('gui_running')
@@ -115,3 +116,22 @@ let g:lightline = {
 " fzf shortcuts
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+
+let g:pymode_breakpoint_bind = '<leader>k'
+
+let g:pymode_python = 'python3'
+
+let g:pymode_folding = 0
+
+let g:pymode_options_max_line_length = 99
+
+let g:pymode_rope_completion = 0
+
+let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
+
+" Base16 theme setting
+let base16colorspace=256
+
+" Default color scheme
+colo base16-default-dark
+
