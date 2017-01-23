@@ -129,9 +129,8 @@ let g:pymode_rope_completion = 0
 
 let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
 
-" Base16 theme setting
-let base16colorspace=256
+"let base16colorspace=256
 
 " Default color scheme
-colo base16-default-dark
+"colo base16-default-dark
 
