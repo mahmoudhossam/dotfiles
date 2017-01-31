@@ -9,11 +9,12 @@ Plug 'majutsushi/tagbar'
 Plug 'Raimondi/delimitMate'
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'fatih/vim-go'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
 Plug 'python-mode/python-mode'
 Plug 'scrooloose/nerdcommenter'
 Plug 'chriskempson/base16-vim'
@@ -90,10 +91,13 @@ let g:syntastic_python_checkers = ['flake8']
 " Make YCM use venv python
 let g:ycm_python_binary_path = 'python'
 " Use system clipboard
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
+
+" lightline configuration
 if !has('gui_running')
     set t_Co=256
 endif
+
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
@@ -117,7 +121,11 @@ let g:lightline = {
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 
+" Pymode configuration
+
 let g:pymode_breakpoint_bind = '<leader>k'
+
+let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
 
 let g:pymode_python = 'python3'
 
@@ -125,12 +133,16 @@ let g:pymode_folding = 0
 
 let g:pymode_options_max_line_length = 99
 
-let g:pymode_rope_completion = 0
+let g:pymode_rope = 0
 
-let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
+" Base16 theme configuration
+let base16colorspace=256
 
-"let base16colorspace=256
+colo base16-default-dark
 
-" Default color scheme
-"colo base16-default-dark
+" Python provider configuration
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1

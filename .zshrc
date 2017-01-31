@@ -26,7 +26,6 @@ alias gpr="git pull-request"
 COMPLETION_WAITING_DOTS="true"
 
 antigen bundle git
-antigen bundle debian
 antigen bundle github
 antigen bundle colored-man-pages
 antigen bundle systemd
@@ -42,25 +41,29 @@ antigen apply
 
 export GOPATH=/home/mahmoud/Projects/Go
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:.fzf/:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
-. /usr/share/fzf/key-bindings.zsh
-. /usr/share/fzf/completion.zsh
-
-export VISUAL=vim
+. ~/.fzf/shell/key-bindings.zsh
+. ~/.fzf/shell/completion.zsh
 
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
+# Activate fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export VISUAL=vim
+export EDITOR=vim
+
 # Set up virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv2
+export VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-export VIRTUALENVWRAPPER_PYTHON=/usr/sbin/python2
-source /usr/bin/virtualenvwrapper_lazy.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
 
 # Use base16 theme
 BASE16_SHELL=$HOME/.config/base16-shell/
@@ -68,3 +71,5 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 # enable "fuck"
 eval $(thefuck --alias)
+
+export XDG_CONFIG_HOME="$HOME/.config"
