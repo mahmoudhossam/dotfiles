@@ -1,7 +1,8 @@
 # Use antigen
 source ~/.antigen/antigen.zsh
-# Use xterm's 256 color support
-export TERM="xterm-256color"
+
+# Use a 256 color terminal
+export TERM="screen-256color"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -30,6 +31,7 @@ antigen bundle github
 antigen bundle colored-man-pages
 antigen bundle systemd
 antigen bundle command-not-found
+antigen bundle web-search
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle fabric
@@ -60,9 +62,9 @@ export EDITOR=vim
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Projects
 export VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENV_PYTHON=/usr/bin/python3
 source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
 
 # Use base16 theme
@@ -73,3 +75,5 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 eval $(thefuck --alias)
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+export WINEARCH=win32
