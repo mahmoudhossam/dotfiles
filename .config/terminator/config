@@ -1,4 +1,6 @@
 [global_config]
+  enabled_plugins = TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  inactive_color_offset = 1.0
 [keybindings]
 [layouts]
   [[default]]
@@ -11,5 +13,14 @@
 [plugins]
 [profiles]
   [[default]]
-    background_image = None
+    background_color = "#002b36"
+    cursor_color = "#839496"
     cursor_shape = ibeam
+    custom_command = tmux -2
+    font = Fira Mono 14
+    foreground_color = "#839496"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    scrollback_infinite = True
+    show_titlebar = False
+    use_custom_command = True
+    use_system_font = False
