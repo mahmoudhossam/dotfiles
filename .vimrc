@@ -102,6 +102,9 @@ set mouse=a
 " fzf shortcuts
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>l :Commits<CR>
+nnoremap <leader>s :GFiles?<CR>
+nnoremap <leader>w :Windows<CR>
 
 " Pymode configuration
 
