@@ -77,3 +77,6 @@ eval $(thefuck --alias)
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export WINEARCH=win32
+
+export NVM_DIR="/home/mahmoud/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

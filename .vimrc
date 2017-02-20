@@ -21,6 +21,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'python-mode/python-mode'
 Plug 'scrooloose/nerdcommenter'
 Plug 'chriskempson/base16-vim'
+Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -28,8 +29,10 @@ filetype plugin indent on
 
 " Enhance command-line completion
 set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
+if !has("nvim")
+    " Allow cursor keys in insert mode (Invalid in neovim)
+    set esckeys
+endif
 " Optimize for fast terminal connections
 set ttyfast
 " Add the g flag to search/replace by default
@@ -129,5 +132,7 @@ colo base16-default-dark
 let g:python_host_prog  = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 
-" Use deoplete.
+" Deoplete configuration
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources = {}
+let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
