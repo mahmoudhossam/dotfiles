@@ -11,7 +11,17 @@ antigen use oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-antigen theme ys
+antigen theme bhilburn/powerlevel9k powerlevel9k
+
+# Set up virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENV_PYTHON=/usr/bin/python3
+source /usr/bin/virtualenvwrapper_lazy.sh
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -30,6 +40,7 @@ antigen bundle git
 antigen bundle github
 antigen bundle colored-man-pages
 antigen bundle systemd
+antigen bundle archlinux
 antigen bundle command-not-found
 antigen bundle web-search
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -38,6 +49,8 @@ antigen bundle fabric
 antigen bundle vagrant
 antigen bundle docker
 antigen bundle docker-compose
+antigen bundle virtualenv
+antigen bundle virtualenvwrapper
 
 antigen apply
 
@@ -58,15 +71,6 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export VISUAL=vim
 export EDITOR=vim
 
-# Set up virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENV_PYTHON=/usr/bin/python3
-source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
-
 # Use base16 theme
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -80,3 +84,5 @@ export WINEARCH=win32
 
 export NVM_DIR="/home/mahmoud/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir vcs)
