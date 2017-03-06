@@ -32,6 +32,7 @@ alias gsv="git stash save"
 alias gsc="git stash clear"
 alias gdc="git diff --cached --color"
 alias gpr="git pull-request"
+alias v="vim"
 
 # Display red dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
