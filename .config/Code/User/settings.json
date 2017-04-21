@@ -1,0 +1,25 @@
+{
+    "workbench.colorTheme": "One Dark",
+    "workbench.statusBar.visible": false,
+    "workbench.welcome.enabled": false,
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.cursorBlinking": "phase",   
+    "go.gopath": "/home/mahmoud/Projects/Go",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Args": [
+        "--max-line-length=99"
+    ],
+    "python.venvPath": "/home/mahmoud/.virtualenvs",
+    "workbench.iconTheme": "vscode-icons",
+    "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/*.py[c|o]": true
+  }
+}
