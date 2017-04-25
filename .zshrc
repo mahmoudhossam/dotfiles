@@ -23,15 +23,11 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENV_PYTHON=/usr/bin/python3
 source /usr/bin/virtualenvwrapper_lazy.sh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias gsp="git stash pop"
-alias gsl="git stash list"
-alias gsv="git stash save"
-alias gsc="git stash clear"
-alias gdc="git diff --cached --color"
+# Aliases
+alias zshconfig="$EDITOR ~/.zshrc"
 alias gpr="git pull-request"
+alias gap="git apply"
+alias gma="git merge abort"
 alias v="vim"
 
 # Display red dots while waiting for completion
@@ -46,18 +42,20 @@ antigen bundle command-not-found
 antigen bundle web-search
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle fabric
 antigen bundle vagrant
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle virtualenv
 antigen bundle virtualenvwrapper
+antigen bundle tmux
 
 antigen apply
 
 export GOPATH=/home/mahmoud/Projects/Go
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:.fzf/:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:.fzf/:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
 . ~/.fzf/shell/key-bindings.zsh
@@ -86,4 +84,8 @@ export WINEARCH=win32
 export NVM_DIR="/home/mahmoud/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir vcs)
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+export POWERLEVEL9K_STATUS_VERBOSE=false
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=0
+export POWERLEVEL9K_SHORTEN_DELIMITER=""
