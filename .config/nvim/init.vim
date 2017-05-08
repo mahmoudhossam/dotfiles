@@ -10,20 +10,29 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-Plug 'tpope/vim-obsession'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'fatih/vim-go'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/echodoc.vim'
 Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'python-mode/python-mode'
 Plug 'scrooloose/nerdcommenter'
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
+Plug 'honza/vim-snippets'
 Plug 'pearofducks/ansible-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
+Plug 'rust-lang/rust.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'noah/vim256-color'
+Plug 'tpope/vim-eunuch'
+Plug 'junegunn/vim-slash'
+Plug 'junegunn/gv.vim'
+Plug 'tpope/vim-tbone'
 
 call plug#end()
 
@@ -63,8 +72,6 @@ set expandtab
 set confirm
 " Airline already shows this information, so disable it
 set noshowmode
-" Treat underscore as a word boundary
-set iskeyword-=_
 " Don't require saving buffer contents before switching to another
 set hidden
 " Use smartcase behavior in search
@@ -105,7 +112,11 @@ let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
 
 let g:pymode_folding = 0
 
-let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
+
+let g:pymode_rope_autoimport = 1
+
+let g:pymode_rope_autoimport_bind = '<leader>i'
 
 let g:pymode_lint_cwindow = 0
 
@@ -114,7 +125,7 @@ let g:pymode_options_max_line_length = 99
 " Base16 theme configuration
 let base16colorspace=256
 
-colo base16-default-dark
+colo base16-onedark
 
 " Python provider configuration
 let g:python_host_prog  = '/usr/bin/python2'
@@ -126,6 +137,10 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
 let g:deoplete#delimiters = ['/', '.']
+autocmd CompleteDone * pclose!
+
+" Echodoc configuration
+let g:echodoc_enable_at_startup = 1
 
 " EditorConfig configuration
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -139,13 +154,8 @@ let g:airline#extensions#tabline#enabled = 1
 map <leader>n :NERDTreeToggle<CR>
 " Close vim if the only window left open is a NERDTREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Open NERDTREE if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" Jump to the main window.
-autocmd VimEnter * wincmd p
 
-" Close buffer
+" Close buffer shortcut
 nnoremap <leader>d :bd<CR>
 
 " Tmuxline configuration
@@ -155,5 +165,8 @@ let g:tmuxline_preset = {
       \'cwin': ['#I', '#W#F'],
       \'y' : ['#{cpu_percentage}', '%R', '%a %d/%m/%Y'],
       \'z' : '#H'}
+" Ultisnips configuration
+let g:UltiSnipsSnippetDirectories=$HOME.'/.vim/plugged/vim-snippets'
+let g:UltiSnipsExpandTrigger='<tab>'
 " Tmuxline conflicts with TPM
 let g:airline#extensions#tmuxline#enabled = 0
