@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
@@ -147,3 +147,13 @@ autocmd VimEnter * wincmd p
 
 " Close buffer
 nnoremap <leader>d :bd<CR>
+
+" Tmuxline configuration
+let g:tmuxline_preset = {
+      \'a' : '#S',
+      \'win' : ['#I', '#W'],
+      \'cwin': ['#I', '#W#F'],
+      \'y' : ['#{cpu_percentage}', '%R', '%a %d/%m/%Y'],
+      \'z' : '#H'}
+" Tmuxline conflicts with TPM
+let g:airline#extensions#tmuxline#enabled = 0
