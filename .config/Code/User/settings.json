@@ -21,5 +21,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/*.py[c|o]": true
-  }
+    },
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vsicons.dontShowNewVersionMessage": true
 }
