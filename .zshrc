@@ -1,5 +1,7 @@
+export ADOTDIR=$HOME/.antigen
+export ANTIGEN_BUNDLES=$ADOTDIR/bundles
 # Use antigen
-source ~/.antigen/antigen.zsh
+source $ADOTDIR/antigen.zsh
 
 # Use a 256 color terminal
 export TERM="screen-256color"
@@ -11,6 +13,13 @@ antigen use oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+export POWERLEVEL9K_STATUS_VERBOSE=false
+export POWERLEVEL9K_MODE='nerdfont-complete'
+#export POWERLEVEL9K_SHORTEN_DIR_LENGTH=0
+#export POWERLEVEL9K_SHORTEN_DELIMITER=""
+export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
 # Set up virtualenvwrapper
@@ -28,7 +37,7 @@ alias zshconfig="$EDITOR ~/.zshrc"
 alias gpr="git pull-request"
 alias gap="git apply"
 alias gma="git merge abort"
-alias v="vim"
+alias v="nvim"
 
 # Display red dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -50,6 +59,7 @@ antigen bundle docker-compose
 antigen bundle virtualenv
 antigen bundle virtualenvwrapper
 antigen bundle tmux
+antigen bundle kubectl
 
 antigen apply
 
@@ -83,9 +93,3 @@ export WINEARCH=win32
 
 export NVM_DIR="/home/mahmoud/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
-export POWERLEVEL9K_STATUS_VERBOSE=false
-export POWERLEVEL9K_SHORTEN_DIR_LENGTH=0
-export POWERLEVEL9K_SHORTEN_DELIMITER=""
