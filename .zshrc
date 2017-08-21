@@ -71,8 +71,8 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH
 . ~/.fzf/shell/key-bindings.zsh
 . ~/.fzf/shell/completion.zsh
 
-# Setting ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag -g ""'
+# Setting rg as the default source for fzf
+export FZF_DEFAULT_COMMAND='rg --files'
 
 # Activate fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
