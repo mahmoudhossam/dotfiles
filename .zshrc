@@ -59,7 +59,9 @@ antigen bundle docker-compose
 antigen bundle virtualenv
 antigen bundle virtualenvwrapper
 antigen bundle tmux
+antigen bundle git-extras
 antigen bundle kubectl
+antigen bundle z
 
 antigen apply
 
@@ -72,7 +74,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH
 . ~/.fzf/shell/completion.zsh
 
 # Setting rg as the default source for fzf
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rg --files -L'
 
 # Activate fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
