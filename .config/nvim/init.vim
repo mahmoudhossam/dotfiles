@@ -10,15 +10,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sleuth'
-Plug 'fatih/vim-go'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/echodoc.vim'
 Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'python-mode/python-mode'
+Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
+Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
@@ -26,7 +26,7 @@ Plug 'honza/vim-snippets'
 Plug 'pearofducks/ansible-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'tpope/vim-eunuch'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/gv.vim'
@@ -132,8 +132,10 @@ let g:python3_host_prog = '/usr/bin/python'
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
+let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
+let g:deoplete#sources.go = ['file', 'ultisnips', 'vim-go']
 let g:deoplete#delimiters = ['/', '.']
 autocmd CompleteDone * pclose!
 
@@ -164,7 +166,7 @@ let g:tmuxline_preset = {
       \'y' : ['#{cpu_percentage}', '%R', '%a %d/%m/%Y'],
       \'z' : '#H'}
 " Ultisnips configuration
-let g:UltiSnipsSnippetDirectories=$HOME.'/.vim/plugged/vim-snippets'
-let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsSnippetsDir='~/.local/share/nvim/plugged/vim-snippets/UltiSnips'
+let g:UltiSnipsExpandTrigger="<tab>"
 " Tmuxline conflicts with TPM
 let g:airline#extensions#tmuxline#enabled = 0
