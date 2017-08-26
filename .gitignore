@@ -64,3 +64,6 @@ tags
 
 # Visual Studio Code files
 .vscode/*
+
+# Rope files
+.ropeproject/*
