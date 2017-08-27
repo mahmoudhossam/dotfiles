@@ -16,7 +16,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/echodoc.vim'
-Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
 Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'scrooloose/nerdcommenter'
@@ -31,6 +31,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-tbone'
+Plug 'andviro/flake8-vim', {'for': 'python'}
 
 call plug#end()
 
@@ -86,7 +87,7 @@ autocmd VimEnter * wincmd p
 " Make Syntastic use jshint
 let g:syntastic_javascript_checkers = ['jshint']
 " Make Syntastic use flake8
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['pylint', 'flake8']
 " Make YCM use venv python
 let g:ycm_python_binary_path = 'python'
 " Use system clipboard
@@ -116,7 +117,7 @@ let g:pymode_rope_autoimport = 1
 
 let g:pymode_rope_autoimport_bind = '<leader>i'
 
-let g:pymode_lint_cwindow = 0
+let g:pymode_lint = 0
 
 let g:pymode_options_max_line_length = 99
 
@@ -135,7 +136,7 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
-let g:deoplete#sources.go = ['file', 'ultisnips', 'vim-go']
+let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#delimiters = ['/', '.']
 autocmd CompleteDone * pclose!
 
@@ -170,3 +171,5 @@ let g:UltiSnipsSnippetsDir='~/.local/share/nvim/plugged/vim-snippets/UltiSnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 " Tmuxline conflicts with TPM
 let g:airline#extensions#tmuxline#enabled = 0
+" flake8-vim configuration
+let g:PyFlakeOnWrite = 1
