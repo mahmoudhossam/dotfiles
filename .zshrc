@@ -17,8 +17,6 @@ export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
 export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 export POWERLEVEL9K_STATUS_VERBOSE=false
 export POWERLEVEL9K_MODE='nerdfont-complete'
-#export POWERLEVEL9K_SHORTEN_DIR_LENGTH=0
-#export POWERLEVEL9K_SHORTEN_DELIMITER=""
 export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
@@ -95,3 +93,9 @@ export WINEARCH=win32
 
 export NVM_DIR="/home/mahmoud/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# Swap ESC and Caps Lock
+/usr/bin/setxkbmap -option "caps:swapescape"
+
+# Setup keyboard layouts and switching
+/usr/bin/setxkbmap -layout us,ara
+/usr/bin/setxkbmap -option 'grp:win_space_toggle'
