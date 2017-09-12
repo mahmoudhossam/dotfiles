@@ -18,3 +18,12 @@
     helper = cache --timeout=7200
 [alias]
     patch = -c core.pager="" show --no-color
+[merge]
+    tool= meld
+[diff]
+    tool=vimdiff
+[gui]
+	displayuntracked = true
+[cola]
+	checkconflicts = true
+	spellcheck = false
