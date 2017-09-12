@@ -65,7 +65,7 @@ antigen apply
 
 export GOPATH=/home/mahmoud/Projects/Go
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:.fzf/:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:.fzf/:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
 . ~/.fzf/shell/key-bindings.zsh
