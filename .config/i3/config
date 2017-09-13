@@ -148,12 +148,8 @@ bindsym $mod+r mode "resize"
 # Map Ctrl + Alt + l to lock screen.
 bindsym mod4+l exec --no-startup-id i3lock -c 000000
 
-bar {
-        i3bar_command lemonbar
 
-        status_command python /usr/lib/python3.6/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height 20
-        font pango:Source Code Pro 11
-}
+exec --no-startup-id python /usr/lib/python3.6/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height 25
 
 # PulseAudio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -174,3 +170,11 @@ workspace_layout tabbed
 
 # Take a screenshot
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
+
+# Swap ESC and Caps Lock
+exec_always --no-startup-id /usr/bin/setxkbmap -option "caps:swapescape"
+
+# Setup keyboard layouts and switching
+exec_always --no-startup-id /usr/bin/setxkbmap -layout us,ara
+exec_always --no-startup-id /usr/bin/setxkbmap -option 'grp:win_space_toggle'
+

@@ -93,11 +93,6 @@ export WINEARCH=win32
 
 export NVM_DIR="/home/mahmoud/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# Swap ESC and Caps Lock
-/usr/bin/setxkbmap -option "caps:swapescape"
 
-# Setup keyboard layouts and switching
-/usr/bin/setxkbmap -layout us,ara
-/usr/bin/setxkbmap -option 'grp:win_space_toggle'
 
 export TERMINAL=terminator
