@@ -99,3 +99,5 @@ export NVM_DIR="/home/mahmoud/.nvm"
 # Setup keyboard layouts and switching
 /usr/bin/setxkbmap -layout us,ara
 /usr/bin/setxkbmap -option 'grp:win_space_toggle'
+
+export TERMINAL=terminator
