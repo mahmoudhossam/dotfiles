@@ -172,3 +172,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Default workspace layout
+workspace_layout tabbed
