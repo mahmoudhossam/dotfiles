@@ -149,7 +149,7 @@ bindsym $mod+r mode "resize"
 bindsym mod4+l exec --no-startup-id i3lock -c 000000
 
 
-exec --no-startup-id python /usr/lib/python3.6/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height 25
+exec --no-startup-id python /usr/lib/python3.6/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height 25 -- -b
 
 # PulseAudio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
