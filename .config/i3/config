@@ -175,3 +175,6 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Default workspace layout
 workspace_layout tabbed
+
+# Take a screenshot
+bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
