@@ -17,7 +17,7 @@ set $mod Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:Source Sans Pro 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -148,8 +148,12 @@ bindsym $mod+r mode "resize"
 # Map Ctrl + Alt + l to lock screen.
 bindsym mod4+l exec --no-startup-id i3lock -c 000000
 
-
-exec --no-startup-id python /usr/lib/python3.6/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height 25 -- -b
+bar {
+        font pango:Source Sans Pro 15
+        position bottom
+        tray_output none
+        status_command bumblebee-status -t gruvbox-powerline -m cpu memory battery layout datetime amixer -p datetime.format="%T %e/%m/%Y" nic.exclude="lo,virbr,docker,vboxnet,veth,br"
+}
 
 # PulseAudio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
