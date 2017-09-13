@@ -1,5 +1,5 @@
 [global_config]
-  enabled_plugins = TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = TerminalShot,
   inactive_color_offset = 1.0
   window_state = maximise
 [keybindings]
@@ -14,11 +14,10 @@
 [plugins]
 [profiles]
   [[default]]
-    background_image = None
     cursor_color = "#839496"
     cursor_shape = ibeam
     custom_command = tmux -2
-    font = Fira Mono for Powerline 14
+    font = SauceCodePro Nerd Font 14
     foreground_color = "#ffffff"
     palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     scrollback_infinite = True
