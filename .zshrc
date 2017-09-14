@@ -94,5 +94,9 @@ export WINEARCH=win32
 export NVM_DIR="/home/mahmoud/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# Enable gcloud completions
+if [[ (( $+commands[gcloud] )) ]]; then
+    source /opt/google-cloud-sdk/completion.zsh.inc
+fi
 
 export TERMINAL=terminator
