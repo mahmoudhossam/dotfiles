@@ -13,18 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-# font pango:Source Code Pro 8
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:Source Sans Pro 10
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -149,7 +138,7 @@ bindsym $mod+r mode "resize"
 bindsym mod4+l exec --no-startup-id i3lock -c 000000
 
 bar {
-        font pango:Source Sans Pro 15
+        font pango:SauceCodePro Nerd Font 15
         position bottom
         tray_output none
         status_command bumblebee-status -t gruvbox-powerline -m cpu memory battery layout datetime amixer -p datetime.format="%T %e/%m/%Y" nic.exclude="lo,virbr,docker,vboxnet,veth,br"
@@ -182,3 +171,5 @@ exec_always --no-startup-id /usr/bin/setxkbmap -option "caps:swapescape"
 exec_always --no-startup-id /usr/bin/setxkbmap -layout us,ara
 exec_always --no-startup-id /usr/bin/setxkbmap -option 'grp:win_space_toggle'
 
+# Set background image
+exec_always --no-startup-id feh --bg-scale /usr/share/archlinux/wallpaper/archlinux-simplyblack.png
