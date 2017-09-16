@@ -135,7 +135,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Map Ctrl + Alt + l to lock screen.
-bindsym mod4+l exec --no-startup-id i3lock -c 000000
+bindsym mod4+l exec --no-startup-id i3lock -c 000000 -i /usr/share/archlinux/wallpaper/archlinux-simplyblack.png
 
 bar {
         font pango:SauceCodePro Nerd Font 15
@@ -149,7 +149,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-# Sreen brightness controls
+# Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
@@ -164,12 +164,5 @@ workspace_layout tabbed
 # Take a screenshot
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 
-# Swap ESC and Caps Lock
-exec_always --no-startup-id /usr/bin/setxkbmap -option "caps:swapescape"
-
-# Setup keyboard layouts and switching
-exec_always --no-startup-id /usr/bin/setxkbmap -layout us,ara
-exec_always --no-startup-id /usr/bin/setxkbmap -option 'grp:win_space_toggle'
-
-# Set background image
-exec_always --no-startup-id feh --bg-scale /usr/share/archlinux/wallpaper/archlinux-simplyblack.png
+# Execute startup script
+exec_always --no-startup-id "sh ~/.config/i3/startup.sh"
