@@ -134,7 +134,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Map Ctrl + Alt + l to lock screen.
+# Map Win + l to lock screen.
 bindsym mod4+l exec --no-startup-id i3lock -c 000000 -i /usr/share/archlinux/wallpaper/archlinux-simplyblack.png
 
 bar {
@@ -157,6 +157,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Miscellaneous keybindings
+bindsym XF86Calculator exec gnome-calculator
 
 # Default workspace layout
 workspace_layout tabbed
