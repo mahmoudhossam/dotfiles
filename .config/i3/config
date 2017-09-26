@@ -135,7 +135,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Map Win + l to lock screen.
-bindsym mod4+l exec --no-startup-id i3lock -c 000000 -i /usr/share/archlinux/wallpaper/archlinux-simplyblack.png
+bindsym mod4+l exec --no-startup-id "sxlock -l -p '_!_' -u ''"
 
 bar {
         font pango:SauceCodePro Nerd Font 15
@@ -166,6 +166,9 @@ workspace_layout tabbed
 
 # Take a screenshot
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
+
+# Take a screenshot of the whole screen
+bindsym $mod+Shift+f exec maim | xclip -selection clipboard -t image/png
 
 # Execute startup script
 exec_always --no-startup-id "sh ~/.config/i3/startup.sh"

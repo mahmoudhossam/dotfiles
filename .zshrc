@@ -13,11 +13,11 @@ antigen use oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
 export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 export POWERLEVEL9K_STATUS_VERBOSE=false
 export POWERLEVEL9K_MODE='nerdfont-complete'
-export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
 # Set up virtualenvwrapper
@@ -98,5 +98,9 @@ export NVM_DIR="/home/mahmoud/.nvm"
 if [[ (( $+commands[gcloud] )) ]]; then
     source /opt/google-cloud-sdk/completion.zsh.inc
 fi
+
+# Set up keychain
+setopt extendedglob
+eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
 
 export TERMINAL=terminator

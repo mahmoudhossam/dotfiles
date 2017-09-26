@@ -1,7 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
@@ -31,7 +30,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-tbone'
-Plug 'andviro/flake8-vim', {'for': 'python'}
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 
@@ -88,16 +86,6 @@ nnoremap <Leader><Tab> :bn<CR>
 nnoremap <Leader><S-Tab> :bp<CR>
 " Go to previous (last accessed) window.
 autocmd VimEnter * wincmd p
-" Make Syntastic use jshint
-let g:syntastic_javascript_checkers = ['jshint']
-" Make Syntastic use flake8
-let g:syntastic_python_checkers = ['pylint', 'flake8', 'pycodestyle']
-" Set max line length for pycodestyle
-let g:syntastic_python_pycodestyle_max_line_length = 99
-" Don't check files on exit
-let g:syntastic_check_on_wq = 0
-" Don't check files on write
-let g:pymode_lint_on_write = 0
 " Use system clipboard
 set clipboard+=unnamedplus
 
@@ -188,9 +176,13 @@ cabbrev SW SudoWrite
 
 " Supertab configuration
 let g:SuperTabDefaultCompletionType = "<c-n>"
-" flake8-vim configuration
-let g:PyFlakeOnWrite = 1
 
 " Prosession configuration
 let g:prosession_dir = "~/.local/share/nvim/session/"
 let g:prosession_tmux_title = 1
+
+" Neomake configuration
+" Run Neomake when reading a buffer (after 1s), and when writing.
+call neomake#configure#automake('rw', 1000)
+" Configure flake8 under neomake
+let g:neomake_python_flake8_args = '--max-line-length=99'
