@@ -32,6 +32,7 @@ Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
+Plug 'neomake/neomake'
 
 call plug#end()
 
