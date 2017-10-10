@@ -59,6 +59,7 @@ antigen bundle virtualenvwrapper
 antigen bundle tmux
 antigen bundle git-extras
 antigen bundle z
+antigen bundle StackExchange/blackbox
 
 antigen apply
 
