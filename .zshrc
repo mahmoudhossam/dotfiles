@@ -1,5 +1,10 @@
 export ADOTDIR=$HOME/.antigen
 export ANTIGEN_BUNDLES=$ADOTDIR/bundles
+export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+export POWERLEVEL9K_STATUS_VERBOSE=false
+export POWERLEVEL9K_MODE='nerdfont-complete'
 # Use antigen
 source $ADOTDIR/antigen.zsh
 
@@ -13,11 +18,6 @@ antigen use oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
-export POWERLEVEL9K_STATUS_VERBOSE=false
-export POWERLEVEL9K_MODE='nerdfont-complete'
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
 # Set up virtualenvwrapper
