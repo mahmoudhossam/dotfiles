@@ -58,7 +58,6 @@ antigen bundle virtualenv
 antigen bundle virtualenvwrapper
 antigen bundle tmux
 antigen bundle git-extras
-antigen bundle kubectl
 antigen bundle z
 
 antigen apply
@@ -97,6 +96,11 @@ export NVM_DIR="/home/mahmoud/.nvm"
 # Enable gcloud completions
 if [[ (( $+commands[gcloud] )) ]]; then
     source /opt/google-cloud-sdk/completion.zsh.inc
+fi
+
+# Enable kubectl completions
+if [ $+commands[kubectl] ]; then
+  source <(kubectl completion zsh)
 fi
 
 # Set up keychain
