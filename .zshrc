@@ -60,6 +60,7 @@ antigen bundle tmux
 antigen bundle git-extras
 antigen bundle z
 antigen bundle StackExchange/blackbox
+antigen bundle zchee/go-zsh-completions
 
 antigen apply
 
@@ -103,6 +104,12 @@ fi
 if [ $+commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
+
+# Enable Helm completions
+if [ $+commands[helm] ]; then
+  source <(helm completion zsh)
+fi
+
 
 # Set up keychain
 setopt extendedglob
