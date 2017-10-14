@@ -1,5 +1,6 @@
 [Unit]
 Description=Lock X session using sxlock
+Before=sleep.target
 
 [Service]
 User=mahmoud
