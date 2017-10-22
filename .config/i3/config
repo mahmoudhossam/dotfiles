@@ -137,17 +137,17 @@ bindsym $mod+r mode "resize"
 # Map Win + l to lock screen.
 bindsym mod4+l exec --no-startup-id "sxlock -l -p '_!_' -u ''"
 # Map Win + p to poweroff
-bindsym mod4+p exec --no-startup-id gksudo poweroff
+bindsym mod4+p exec --no-startup-id poweroff
 # Map Win + s to suspend
-bindsym mod4+s exec --no-startup-id gksudo systemctl suspend
+bindsym mod4+s exec --no-startup-id systemctl suspend
 # Map Win + r to reboot
-bindsym mod4+r exec --no-startup-id gksudo reboot
+bindsym mod4+r exec --no-startup-id reboot
 
 bar {
         font pango:SauceCodePro Nerd Font 15
         position bottom
-        tray_output none
-        status_command bumblebee-status -t gruvbox-powerline -m cpu memory battery layout-xkb datetime amixer -p datetime.format="%T %e/%m/%Y" nic.exclude="lo,virbr,docker,vboxnet,veth,br"
+        tray_output primary
+        status_command bumblebee-status -t gruvbox-powerline -m spotify cpu memory battery layout-xkb datetime amixer -p datetime.left-click=gsimplecal datetime.format="%T %a %e %B %Y" nic.exclude="lo,virbr,docker,vboxnet,veth,br"
 }
 
 # PulseAudio controls
