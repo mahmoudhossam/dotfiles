@@ -165,7 +165,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Miscellaneous keybindings
-bindsym XF86Calculator exec gnome-calculator
+bindsym XF86Calculator exec galculator
 
 # Default workspace layout
 workspace_layout tabbed
