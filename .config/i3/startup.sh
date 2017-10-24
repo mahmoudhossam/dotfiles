@@ -7,3 +7,6 @@
                                                                         
 # Set background image
 feh --bg-scale /usr/share/archlinux/wallpaper/archlinux-simplyblack.png
+
+# Start gnome polkit authentication agent
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
