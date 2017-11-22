@@ -32,7 +32,9 @@ Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
+Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 Plug 'neomake/neomake'
+Plug 'brooth/far.vim'
 
 call plug#end()
 
