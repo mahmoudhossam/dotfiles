@@ -34,6 +34,9 @@ Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 Plug 'neomake/neomake'
+Plug 'stephpy/vim-yaml', {'for': 'yaml'}
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'brooth/far.vim'
 
 call plug#end()
@@ -91,6 +94,8 @@ nnoremap <Leader><S-Tab> :bp<CR>
 autocmd VimEnter * wincmd p
 " Use system clipboard
 set clipboard+=unnamedplus
+" Use vertically splitted diffs by default
+set diffopt+=vertical
 
 " Use the mouse
 set mouse=a
