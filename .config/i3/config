@@ -147,7 +147,7 @@ bar {
         font pango:SauceCodePro Nerd Font 15
         position bottom
         tray_output primary
-        status_command bumblebee-status -t gruvbox-powerline -m spotify cpu memory battery layout-xkb datetime amixer -p datetime.left-click=gsimplecal datetime.format="%T %a %e %B %Y" nic.exclude="lo,virbr,docker,vboxnet,veth,br"
+        status_command bumblebee-status -t gruvbox-powerline -m spotify nic cpu memory battery layout-xkb datetime amixer -p datetime.left-click=gsimplecal datetime.format="%T %a %e %B %Y" nic.exclude="lo,virbr,docker,vboxnet,veth,br,enp"
 }
 
 # PulseAudio controls
