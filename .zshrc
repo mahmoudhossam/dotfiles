@@ -5,6 +5,7 @@ export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
 export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 export POWERLEVEL9K_STATUS_VERBOSE=false
 export POWERLEVEL9K_MODE='nerdfont-complete'
+export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # Use antigen
 source $ADOTDIR/antigen.zsh
 
