@@ -1,6 +1,7 @@
 [user]
     name = Mahmoud Hossam
     email = mahmoud.h.hanafy@gmail.com
+    signingkey = D93BB4FD958BBDC3
 [color]
     diff   = auto
     status = auto
@@ -23,7 +24,11 @@
 [diff]
     tool=vimdiff
 [gui]
-	displayuntracked = true
+    displayuntracked = true
 [cola]
-	checkconflicts = true
-	spellcheck = false
+    checkconflicts = true
+    spellcheck = false
+[diff "blackbox"]
+    textconv = gpg --use-agent -q --batch --decrypt
+[commit]
+	gpgsign = true
