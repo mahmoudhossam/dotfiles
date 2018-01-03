@@ -31,4 +31,4 @@
 [diff "blackbox"]
     textconv = gpg --use-agent -q --batch --decrypt
 [commit]
-	gpgsign = true
+    gpgsign = true
