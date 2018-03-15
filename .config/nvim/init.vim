@@ -38,6 +38,8 @@ Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'brooth/far.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 call plug#end()
 
