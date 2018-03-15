@@ -6,11 +6,10 @@ export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 export POWERLEVEL9K_STATUS_VERBOSE=false
 export POWERLEVEL9K_MODE='nerdfont-complete'
 export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+export TERM="screen-256color"
+export TERMINAL=kitty
 # Use antigen
 source $ADOTDIR/antigen.zsh
-
-# Use a 256 color terminal
-export TERM="screen-256color"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -111,9 +110,10 @@ if [ $+commands[helm] ]; then
   source <(helm completion zsh)
 fi
 
-
 # Set up keychain
 setopt extendedglob
 eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
 
-export TERMINAL=terminator
+# Activate pyenv and pyenv-virtualenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
