@@ -137,11 +137,11 @@ bindsym $mod+r mode "resize"
 # Map Win + l to lock screen.
 bindsym mod4+l exec --no-startup-id "sxlock -l -p '_!_' -u ''"
 # Map Win + p to poweroff
-bindsym mod4+p exec --no-startup-id poweroff
+bindsym mod4+p exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to poweroff?' -b 'Shutdown' 'poweroff'"
 # Map Win + s to suspend
 bindsym mod4+s exec --no-startup-id systemctl suspend
 # Map Win + r to reboot
-bindsym mod4+r exec --no-startup-id reboot
+bindsym mod4+r exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to reboot?' -b 'Reboot' 'reboot'"
 
 bar {
         font pango:SauceCodePro Nerd Font 15
@@ -174,7 +174,7 @@ workspace_layout tabbed
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 
 # Take a screenshot of the whole screen
-bindsym $mod+Shift+f exec maim | xclip -selection clipboard -t image/png
+bindsym Print exec maim | xclip -selection clipboard -t image/png
 
 # Execute startup script
 exec_always --no-startup-id "sh ~/.config/i3/startup.sh"
