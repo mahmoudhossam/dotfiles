@@ -19,7 +19,7 @@ font pango:Source Sans Pro 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -135,7 +135,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Map Win + l to lock screen.
-bindsym mod4+l exec --no-startup-id "sxlock -l -p '_!_' -u ''"
+bindsym mod4+l exec --no-startup-id "sxlock -l -p '_!_' -u '' -f '-adobe-helvetica-medium-r-normal--14-100-100-100-p-76-iso8859-15'"
 # Map Win + p to poweroff
 bindsym mod4+p exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to poweroff?' -b 'Shutdown' 'poweroff'"
 # Map Win + s to suspend
@@ -144,7 +144,7 @@ bindsym mod4+s exec --no-startup-id systemctl suspend
 bindsym mod4+r exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to reboot?' -b 'Reboot' 'reboot'"
 
 bar {
-        font pango:SauceCodePro Nerd Font 15
+        font pango:SauceCodePro Nerd Font 12
         position bottom
         tray_output primary
         status_command bumblebee-status -t gruvbox-powerline -m spotify nic cpu memory battery layout-xkb datetime amixer -p datetime.left-click=gsimplecal datetime.format="%T %a %e %B %Y" nic.exclude="lo,virbr,docker,vboxnet,veth,br,enp"
