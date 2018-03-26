@@ -20,16 +20,6 @@ antigen use oh-my-zsh
 # time that oh-my-zsh is loaded.
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
-# Set up virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENV_PYTHON=/usr/bin/python3
-source /usr/bin/virtualenvwrapper_lazy.sh
-
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"
 alias gpr="git pull-request"
@@ -55,7 +45,6 @@ antigen bundle vagrant
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle virtualenv
-antigen bundle virtualenvwrapper
 antigen bundle tmux
 antigen bundle git-extras
 antigen bundle z
@@ -66,17 +55,14 @@ antigen apply
 
 export GOPATH=/home/mahmoud/Projects/Go
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:.fzf/:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
-. ~/.fzf/shell/key-bindings.zsh
-. ~/.fzf/shell/completion.zsh
+. /usr/share/fzf/key-bindings.zsh
+. /usr/share/fzf/completion.zsh
 
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files -L'
-
-# Activate fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export VISUAL=vim
 export EDITOR=vim
@@ -105,11 +91,6 @@ if [ $+commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
 
-# Enable Helm completions
-if [ $+commands[helm] ]; then
-  source <(helm completion zsh)
-fi
-
 # Set up keychain
 setopt extendedglob
 eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
@@ -117,3 +98,6 @@ eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
 # Activate pyenv and pyenv-virtualenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Pipenv completion
+eval "$(pipenv --completion)"
