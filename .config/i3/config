@@ -160,9 +160,9 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+Shift+p exec playerctl play-pause
+bindsym $mod+Shift+n exec playerctl next
+bindsym $mod+Shift+v exec playerctl previous
 
 # Miscellaneous keybindings
 bindsym XF86Calculator exec galculator
@@ -176,5 +176,20 @@ bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 # Take a screenshot of the whole screen
 bindsym Print exec maim | xclip -selection clipboard -t image/png
 
+# Assign applications to specific workspaces
+assign [class="kitty"] 1
+assign [class="Chromium"] 2
+assign [class="Spotify"] 3
+assign [class="Thunderbird"] 4
+
+# Start them up
+exec kitty
+exec chromium
+exec spotify
+exec thunderbird
+
+# Spotify for linux bug workaround
+for_window [class="Spotify"] move to workspace 3
+
 # Execute startup script
-exec_always --no-startup-id "sh ~/.config/i3/startup.sh"
+exec --no-startup-id "sh ~/.config/i3/startup.sh"
