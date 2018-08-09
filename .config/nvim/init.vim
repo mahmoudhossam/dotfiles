@@ -9,7 +9,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
@@ -40,6 +40,7 @@ Plug 'tpope/vim-repeat'
 Plug 'brooth/far.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'ambv/black', {'for': 'python'}
 
 call plug#end()
 
