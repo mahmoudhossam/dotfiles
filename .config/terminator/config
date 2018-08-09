@@ -17,10 +17,11 @@
     cursor_color = "#839496"
     cursor_shape = ibeam
     custom_command = tmux -2
-    font = SauceCodePro Nerd Font 14
+    font = SauceCodePro Nerd Font 13
     foreground_color = "#ffffff"
     palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     scrollback_infinite = True
+    scrollbar_position = hidden
     show_titlebar = False
     use_custom_command = True
     use_system_font = False
