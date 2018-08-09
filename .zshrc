@@ -26,6 +26,7 @@ alias gpr="git pull-request"
 alias gap="git apply"
 alias gma="git merge abort"
 alias v="nvim"
+alias kc="kubectl"
 
 # Display red dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -64,8 +65,8 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files -L'
 
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=nvim
+export EDITOR=nvim
 
 # Use base16 theme
 BASE16_SHELL=$HOME/.config/base16-shell/
@@ -78,19 +79,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export WINEARCH=win32
 
-export NVM_DIR="/home/mahmoud/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Enable gcloud completions
-if [[ (( $+commands[gcloud] )) ]]; then
-    source /opt/google-cloud-sdk/completion.zsh.inc
-fi
-
-# Enable kubectl completions
-if [ $+commands[kubectl] ]; then
-  source <(kubectl completion zsh)
-fi
-
 # Set up keychain
 setopt extendedglob
 eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
@@ -101,3 +89,5 @@ eval "$(pyenv virtualenv-init -)"
 
 # Pipenv completion
 eval "$(pipenv --completion)"
+
+source /usr/share/nvm/init-nvm.sh
