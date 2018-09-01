@@ -1,7 +1,6 @@
 {
-    "workbench.colorTheme": "One Dark",
+    "workbench.colorTheme": "Base16 Dark Oceanic Next",
     "workbench.statusBar.visible": false,
-    "workbench.welcome.enabled": false,
     "editor.fontSize": 16,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
@@ -22,6 +21,10 @@
     "**/.DS_Store": true,
     "**/*.py[c|o]": true
     },
-    "vim.disableAnnoyingNeovimMessage": true,
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.startupEditor": "none",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.fontFamily": "'FuraCode Nerd Font'",
+    "terminal.integrated.fontSize": 16,
+    "keyboard.dispatch": "keyCode",
 }
