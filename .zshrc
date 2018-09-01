@@ -8,6 +8,7 @@ export POWERLEVEL9K_MODE='nerdfont-complete'
 export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 export TERM="screen-256color"
 export TERMINAL=kitty
+export DISABLE_AUTO_TITLE="true"
 # Use antigen
 source $ADOTDIR/antigen.zsh
 
