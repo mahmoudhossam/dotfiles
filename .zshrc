@@ -28,6 +28,8 @@ alias gap="git apply"
 alias gma="git merge abort"
 alias v="nvim"
 alias kc="kubectl"
+alias dcupd="docker-compose up -d"
+alias reload="source ~/.zshrc"
 
 # Display red dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -80,6 +82,16 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export WINEARCH=win32
 
+# Enable kubectl completions
+if [ $+commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
+
+# Enable Helm completions
+if [ $+commands[helm] ]; then
+  source <(helm completion zsh)
+fi
+
 # Set up keychain
 setopt extendedglob
 eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
@@ -88,7 +100,5 @@ eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# Pipenv completion
-eval "$(pipenv --completion)"
-
+# Load nvm
 source /usr/share/nvm/init-nvm.sh

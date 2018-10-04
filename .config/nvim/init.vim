@@ -41,6 +41,7 @@ Plug 'brooth/far.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'ambv/black', {'for': 'python'}
+Plug 'andrewstuart/vim-kubernetes'
 
 call plug#end()
 
@@ -196,4 +197,15 @@ let g:prosession_tmux_title = 1
 " Run Neomake when reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
 " Configure flake8 under neomake
-let g:neomake_python_flake8_args = '--max-line-length=99'
+let g:neomake_python_flake8_args = '--max-line-length=99 --ignore W292'
+
+" Autoformat python files using black
+autocmd BufWritePre *.py execute ':Black'
+
+" Language Client configuration
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/bin/pyls'],
+    \ }

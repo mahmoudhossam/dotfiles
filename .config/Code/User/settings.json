@@ -1,30 +1,33 @@
 {
-    "workbench.colorTheme": "Base16 Dark Oceanic Next",
-    "workbench.statusBar.visible": false,
+    "workbench.colorTheme": "Base16 Dark Tomorrow",
+    "workbench.statusBar.visible": true,
     "editor.fontSize": 16,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.cursorBlinking": "phase",   
-    "go.gopath": "/home/mahmoud/Projects/Go",
-    "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Args": [
-        "--max-line-length=99"
+    "editor.cursorBlinking": "phase",
+    "editor.formatOnSave": true,
+    "vim.leader": ",",
+    "vim.normalModeKeyBindingsNonRecursive": [
+       {
+            "before": ["<leader>", "f"],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        }
     ],
-    "python.venvPath": "/home/mahmoud/.virtualenvs",
+    "vim.hlsearch": true,
+    "vim.useSystemClipboard": true,
+    "go.gopath": "/home/mahmoud/Projects/Go",
+    "python.linting.pylintEnabled": false,
+    "python.formatting.provider": "black",
     "workbench.iconTheme": "vscode-icons",
-    "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/*.py[c|o]": true
-    },
+    "files.insertFinalNewline": true,
     "vsicons.dontShowNewVersionMessage": true,
     "workbench.startupEditor": "none",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.fontFamily": "'FuraCode Nerd Font'",
     "terminal.integrated.fontSize": 16,
     "keyboard.dispatch": "keyCode",
+    "terminal.integrated.rendererType": "dom",
+    "window.zoomLevel": 0
 }
