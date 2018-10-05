@@ -192,7 +192,6 @@ assign [class="Thunderbird"] 4
 exec terminator
 exec chromium
 exec spotify
-exec thunderbird
 
 # Spotify for linux bug workaround
 for_window [class="Spotify"] move to workspace 3
