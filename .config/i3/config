@@ -134,14 +134,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Map Win + l to lock screen.
-bindsym mod4+l exec --no-startup-id "sxlock -l -p '_!_' -u '' -f '-adobe-helvetica-medium-r-normal--14-100-100-100-p-76-iso8859-15'"
-# Map Win + p to poweroff
-bindsym mod4+p exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to poweroff?' -b 'Shutdown' 'poweroff'"
-# Map Win + s to suspend
-bindsym mod4+s exec --no-startup-id systemctl suspend
-# Map Win + r to reboot
-bindsym mod4+r exec --no-startup-id "i3-nagbar -t warning -m 'Are you sure you want to reboot?' -b 'Reboot' 'reboot'"
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id "sxlock -l -p '_!_' -u '' -f '-adobe-helvetica-medium-r-normal--14-100-100-100-p-76-iso8859-15'"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym p exec --no-startup-id systemctl poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym mod4+e mode "$mode_system"
 
 bar {
         font pango:SauceCodePro Nerd Font 12
