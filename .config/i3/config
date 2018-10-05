@@ -19,7 +19,7 @@ font pango:Source Sans Pro 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -183,13 +183,13 @@ bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 bindsym Print exec maim | xclip -selection clipboard -t image/png
 
 # Assign applications to specific workspaces
-assign [class="kitty"] 1
+assign [class="Terminator"] 1
 assign [class="Chromium"] 2
 assign [class="Spotify"] 3
 assign [class="Thunderbird"] 4
 
 # Start them up
-exec kitty
+exec terminator
 exec chromium
 exec spotify
 exec thunderbird
