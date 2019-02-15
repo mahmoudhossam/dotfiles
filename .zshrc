@@ -22,7 +22,7 @@ antigen use oh-my-zsh
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
 # Aliases
-alias zshconfig="$EDITOR ~/.zshrc"
+alias zshconfig='"$EDITOR" ~/.zshrc'
 alias gpr="git pull-request"
 alias gap="git apply"
 alias gma="git merge abort"
@@ -30,6 +30,7 @@ alias v="nvim"
 alias kc="kubectl"
 alias dcupd="docker-compose up -d"
 alias reload="source ~/.zshrc"
+alias tf="terraform"
 
 # Display red dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -59,7 +60,7 @@ antigen apply
 
 export GOPATH=/home/mahmoud/Projects/Go
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$PATH
+export PATH=/usr/sbin:/sbin:$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$HOME/.local/bin/:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
 . /usr/share/fzf/key-bindings.zsh
@@ -81,16 +82,6 @@ eval $(thefuck --alias)
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export WINEARCH=win32
-
-# Enable kubectl completions
-if [ $+commands[kubectl] ]; then
-  source <(kubectl completion zsh)
-fi
-
-# Enable Helm completions
-if [ $+commands[helm] ]; then
-  source <(helm completion zsh)
-fi
 
 # Set up keychain
 setopt extendedglob
