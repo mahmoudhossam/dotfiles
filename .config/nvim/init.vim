@@ -42,6 +42,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'ambv/black', {'for': 'python'}
 Plug 'andrewstuart/vim-kubernetes'
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -147,7 +149,6 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
-let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#delimiters = ['/', '.']
 autocmd CompleteDone * pclose!
 
@@ -192,12 +193,13 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Prosession configuration
 let g:prosession_dir = "~/.local/share/nvim/session/"
 let g:prosession_tmux_title = 1
+let g:prosession_on_startup = 1
 
 " Neomake configuration
 " Run Neomake when reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
 " Configure flake8 under neomake
-let g:neomake_python_flake8_args = '--max-line-length=99 --ignore W292'
+let g:neomake_python_flake8_args = '--max-line-length=99 --ignore W292 --ignore E203'
 
 " Autoformat python files using black
 autocmd BufWritePre *.py execute ':Black'

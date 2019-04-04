@@ -92,5 +92,7 @@ eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/vault vault
 # Load nvm
 source /usr/share/nvm/init-nvm.sh
