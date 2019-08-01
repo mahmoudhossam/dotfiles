@@ -1,7 +1,6 @@
 [user]
     name = Mahmoud Hossam
-    email = mahmoud.h.hanafy@gmail.com
-    signingkey = D93BB4FD958BBDC3
+    email = mhossam@newyorker.de
 [color]
     diff   = auto
     status = auto
@@ -9,14 +8,14 @@
 [push]
     default = simple
 [core]
-    editor = vim
-    excludesfile = ~/.gitignore
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    editor = nvim
+    excludesfile = /Users/mhossam/.gitignore
+    ;pager = diff-so-fancy | less --tabs=4 -RFX
 [instaweb]
     browser = google-chrome
     local = true
 [credential]
-    helper = cache --timeout=7200
+    helper = osxkeychain
 [alias]
     patch = -c core.pager="" show --no-color
 [merge]
@@ -28,7 +27,16 @@
 [cola]
     checkconflicts = true
     spellcheck = false
-[diff "blackbox"]
-    textconv = gpg --use-agent -q --batch --decrypt
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+[mergetool "sourcetree"]
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [commit]
-    gpgsign = true
+    template = /Users/mhossam/.stCommitMsg

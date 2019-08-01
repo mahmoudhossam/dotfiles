@@ -1,15 +1,16 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-Plug '/usr/bin/fzf'
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
@@ -17,7 +18,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/echodoc.vim'
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
-Plug 'python-mode/python-mode', {'for': 'python'}
+Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
@@ -28,7 +29,6 @@ Plug 'SirVer/ultisnips'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'tpope/vim-eunuch'
 Plug 'junegunn/vim-slash'
-Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
@@ -43,7 +43,7 @@ Plug 'tpope/vim-repeat'
 Plug 'ambv/black', {'for': 'python'}
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
-Plug 'posva/vim-vue'
+Plug 'posva/vim-vue', {'for': 'vue'}
 
 call plug#end()
 
@@ -124,24 +124,23 @@ let g:pymode_folding = 0
 
 let g:pymode_rope_regenerate_on_write = 0
 
+let g:pymode_rope = 1
+
 let g:pymode_rope_completion = 0
 
 let g:pymode_rope_autoimport = 1
 
-let g:pymode_rope_autoimport_bind = '<leader>i'
+let g:pymode_rope_autoimport_bind = '<leader>m'
 
 let g:pymode_lint = 0
 
-let g:pymode_options_max_line_length = 99
-
-" Base16 theme configuration
-let base16colorspace=256
+let g:pymode_options_max_line_length = 120
 
 colo base16-onedark
 
 " Python provider configuration
-let g:python_host_prog  = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python'
+let g:python3_host_prog  = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python'
 
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
@@ -173,11 +172,10 @@ nnoremap <leader>d :bd<CR>
 
 " Tmuxline configuration
 let g:tmuxline_preset = {
-      \'a' : '#S',
+      \'a' : '#(whoami)@#H',
       \'win' : ['#I', '#W'],
-      \'cwin': ['#I', '#W#F'],
-      \'y' : ['#{cpu_percentage}', '%R', '%a %d/%m/%Y'],
-      \'z' : '#H'}
+      \'cwin': ['#I', '#F#W'],
+      \'y' : ['#{battery_icon} #{battery_percentage}', '#{cpu_icon} #{cpu_percentage}', '%R', '%a %d/%m/%Y']}
 " Ultisnips configuration
 let g:UltiSnipsSnippetsDir='~/.local/share/nvim/plugged/vim-snippets/UltiSnips'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -198,16 +196,15 @@ let g:prosession_on_startup = 1
 " Neomake configuration
 " Run Neomake when reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
-" Configure flake8 under neomake
-let g:neomake_python_flake8_args = '--max-line-length=99 --ignore W292 --ignore E203'
+" Configure python under neomake
+let g:neomake_python_enabled_makers = ['flake8', 'pylint', 'mypy']
+let g:neomake_python_flake8_args = '--max-line-length=120 --ignore W292'
+let g:neomake_python_pycodestyle_args = '--max-line-length=120 --ignore W292'
+let g:neomake_python_pylint_args = '--disable=C0111,D101'
+let g:neomake_python_pydocstyle_args = '--ignore D1'
 
 " Autoformat python files using black
-autocmd BufWritePre *.py execute ':Black'
+"autocmd BufWritePre *.py execute ':Black'
 
-" Language Client configuration
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/bin/pyls'],
-    \ }
+" Groovy syntax highlighting for jenkinsfile
+au BufNewFile,BufRead Jenkinsfile set filetype=groovy

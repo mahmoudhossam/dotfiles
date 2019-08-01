@@ -1,13 +1,10 @@
+export ZSH_TMUX_AUTOSTART=true
+export LC_MESSAGES=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export ADOTDIR=$HOME/.antigen
 export ANTIGEN_BUNDLES=$ADOTDIR/bundles
-#export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
-export POWERLEVEL9K_STATUS_VERBOSE=false
-export POWERLEVEL9K_MODE='nerdfont-complete'
-export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+export PATH=$HOME/go/bin:/usr/local/opt/curl/bin:/usr/local/miniconda3/bin:/usr/local/opt/grep/libexec/gnubin:/usr/local/bin:/usr/sbin:/sbin:$(ruby -e "puts Gem.user_dir")/bin:$HOME/.local/bin/:$PATH
 export TERM="screen-256color"
-export TERMINAL=kitty
 export DISABLE_AUTO_TITLE="true"
 # Use antigen
 source $ADOTDIR/antigen.zsh
@@ -19,7 +16,7 @@ antigen use oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-antigen theme romkatv/powerlevel10k powerlevel10k
+antigen theme avit
 
 # Aliases
 alias zshconfig='"$EDITOR" ~/.zshrc'
@@ -49,23 +46,18 @@ antigen bundle fabric
 antigen bundle vagrant
 antigen bundle docker
 antigen bundle docker-compose
-antigen bundle virtualenv
 antigen bundle tmux
 antigen bundle git-extras
 antigen bundle z
-antigen bundle StackExchange/blackbox
 antigen bundle zchee/go-zsh-completions
 antigen bundle romkatv/gitstatus
 
 antigen apply
 
-export GOPATH=/home/mahmoud/Projects/Go
-
-export PATH=/usr/sbin:/sbin:$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$HOME/.local/bin/:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
-. /usr/share/fzf/key-bindings.zsh
-. /usr/share/fzf/completion.zsh
+. /usr/local/Cellar/fzf/0.18.0/shell/key-bindings.zsh
+. /usr/local/Cellar/fzf/0.18.0/shell/completion.zsh
 
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files -L'
@@ -84,15 +76,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export WINEARCH=win32
 
-# Set up keychain
-setopt extendedglob
-eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
-
-# Activate pyenv and pyenv-virtualenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/vault vault
+complete -o nospace -C /usr/local/bin/vault vault
 # Load nvm
-source /usr/share/nvm/init-nvm.sh
+source /usr/local/Cellar/nvm/0.34.0/nvm.sh
+
+# GPG agent
+export GPG_TTY=$(tty)
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
