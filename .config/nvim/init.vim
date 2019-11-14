@@ -48,6 +48,7 @@ Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'jparise/vim-graphql', {'for': 'graphql'}
 Plug 'janko/vim-test'
 Plug 'mgedmin/coverage-highlight.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -123,6 +124,8 @@ nnoremap <leader>w :Windows<CR>
 let g:pymode_breakpoint_bind = '<leader>k'
 
 let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
+
+let g:pymode_rope_lookup_project = 0
 
 let g:pymode_folding = 0
 
