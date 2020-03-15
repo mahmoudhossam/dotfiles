@@ -1,24 +1,34 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-sleuth'
+Plug 'junegunn/vim-slash'
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/neco-vim', {'for': 'vim'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
-Plug 'python-mode/python-mode', {'for': 'python'}
-Plug 'scrooloose/nerdcommenter'
+Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
@@ -26,25 +36,20 @@ Plug 'pearofducks/ansible-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'tpope/vim-eunuch'
-Plug 'junegunn/vim-slash'
-Plug 'junegunn/gv.vim'
-Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 Plug 'neomake/neomake'
 Plug 'stephpy/vim-yaml', {'for': 'yaml'}
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'brooth/far.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'ambv/black', {'for': 'python'}
+Plug 'psf/black', {'for': 'python'}
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
-Plug 'posva/vim-vue'
+Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+Plug 'jparise/vim-graphql', {'for': 'graphql'}
+Plug 'janko/vim-test'
+Plug 'mgedmin/coverage-highlight.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -121,11 +126,13 @@ let g:pymode_breakpoint_bind = '<leader>k'
 
 let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
 
+let g:pymode_rope_lookup_project = 0
+
 let g:pymode_folding = 0
 
-let g:pymode_rope = 1
-
 let g:pymode_rope_regenerate_on_write = 0
+
+let g:pymode_rope = 1
 
 let g:pymode_rope_completion = 0
 
@@ -135,7 +142,9 @@ let g:pymode_rope_autoimport_bind = '<leader>m'
 
 let g:pymode_lint = 0
 
-let g:pymode_options_max_line_length = 99
+let g:pymode_options_max_line_length = 120
+
+let g:pymode_rope_goto_definition_cmd = 'e'
 
 " Base16 theme configuration
 let base16colorspace=256
@@ -171,6 +180,7 @@ let g:airline#extensions#tabline#enabled = 1
 map <leader>n :NERDTreeToggle<CR>
 " Close vim if the only window left open is a NERDTREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeIgnore=['__pycache__$']
 
 " Close buffer shortcut
 nnoremap <leader>d :bd<CR>
@@ -180,11 +190,10 @@ nnoremap <leader>s :Rg
 
 " Tmuxline configuration
 let g:tmuxline_preset = {
-      \'a' : '#S',
+      \'a' : '#(whoami)@#H',
       \'win' : ['#I', '#W'],
-      \'cwin': ['#I', '#W#F'],
-      \'y' : ['#{cpu_percentage}', '%R', '%a %d/%m/%Y'],
-      \'z' : '#H'}
+      \'cwin': ['#I', '#F#W'],
+      \'y' : ['#{battery_icon} #{battery_percentage}', '#{cpu_icon} #{cpu_percentage}', '%R', '%a %d/%m/%Y']}
 " Ultisnips configuration
 let g:UltiSnipsSnippetsDir='~/.local/share/nvim/plugged/vim-snippets/UltiSnips'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -202,13 +211,42 @@ let g:prosession_dir = "~/.local/share/nvim/session/"
 let g:prosession_tmux_title = 1
 
 " Neomake configuration
+
+" Configure python under neomake
+let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle']
+
+if filereadable("setup.cfg")
+      let g:neomake_python_pycodestyle_maker = {
+              \ 'args': ['--config=setup.cfg'],
+              \ 'errorformat': '%f:%l:%c: %m',
+              \ }
+
+      let g:neomake_python_pylint_maker = {
+            \ 'args': ['--config=setup.cfg'],
+            \ 'errorformat': '%f:%l:%c: %m',
+            \ }
+else
+      let g:neomake_python_pycodestyle_maker = {
+              \ 'args': ['--max-line-length=120', '--ignore=W292,R0903'],
+              \ 'errorformat': '%f:%l:%c: %m',
+              \ }
+
+      let g:neomake_python_pylint_maker = {
+            \ 'args': ['--max-line-length=120', '--disable=C0111,D101,W1203'],
+            \ 'errorformat': '%f:%l:%c: %m',
+            \ }
+endif
+
 " Run Neomake when reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
-let g:neomake#makers#ft#python#EnabledMakers = ['python']
+
 " Autoformat python files using black
 if empty($NO_AUTOBLACK)
       autocmd BufWritePre *.py execute ':Black'
 endif
+
+" Groovy syntax highlighting for jenkinsfile
+au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 " Terraform configuration
 let g:terraform_align = 1
