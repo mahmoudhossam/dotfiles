@@ -44,6 +44,7 @@ Plug 'ambv/black', {'for': 'python'}
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'posva/vim-vue'
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 
 call plug#end()
 
@@ -122,13 +123,15 @@ let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
 
 let g:pymode_folding = 0
 
+let g:pymode_rope = 1
+
 let g:pymode_rope_regenerate_on_write = 0
 
 let g:pymode_rope_completion = 0
 
 let g:pymode_rope_autoimport = 1
 
-let g:pymode_rope_autoimport_bind = '<leader>i'
+let g:pymode_rope_autoimport_bind = '<leader>m'
 
 let g:pymode_lint = 0
 
@@ -149,6 +152,7 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
+let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#delimiters = ['/', '.']
 autocmd CompleteDone * pclose!
 
@@ -170,6 +174,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Close buffer shortcut
 nnoremap <leader>d :bd<CR>
+
+" Search shortcut
+nnoremap <leader>s :Rg 
 
 " Tmuxline configuration
 let g:tmuxline_preset = {
@@ -193,21 +200,16 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Prosession configuration
 let g:prosession_dir = "~/.local/share/nvim/session/"
 let g:prosession_tmux_title = 1
-let g:prosession_on_startup = 1
 
 " Neomake configuration
 " Run Neomake when reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
-" Configure flake8 under neomake
-let g:neomake_python_flake8_args = '--max-line-length=99 --ignore W292 --ignore E203'
-
+let g:neomake#makers#ft#python#EnabledMakers = ['python']
 " Autoformat python files using black
-autocmd BufWritePre *.py execute ':Black'
+if empty($NO_AUTOBLACK)
+      autocmd BufWritePre *.py execute ':Black'
+endif
 
-" Language Client configuration
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/bin/pyls'],
-    \ }
+" Terraform configuration
+let g:terraform_align = 1
+let g:terraform_fmt_on_save = 1
