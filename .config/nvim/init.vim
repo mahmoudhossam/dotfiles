@@ -45,6 +45,7 @@ Plug 'psf/black', {'for': 'python'}
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'posva/vim-vue', {'for': 'vue'}
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 Plug 'jparise/vim-graphql', {'for': 'graphql'}
 Plug 'janko/vim-test'
 Plug 'mgedmin/coverage-highlight.vim'
@@ -145,9 +146,9 @@ let g:pymode_options_max_line_length = 120
 
 let g:pymode_rope_goto_definition_cmd = 'e'
 
-"let g:pymode_virtualenv_path = $CONDA_PREFIX
+" Base16 theme configuration
+let base16colorspace=256
 
-let base16colorspace=256  " Access colors present in 256 colorspace
 colo base16-nord
 
 " Python provider configuration
@@ -160,6 +161,7 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
+let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#delimiters = ['/', '.']
 autocmd CompleteDone * pclose!
 
@@ -183,6 +185,9 @@ let NERDTreeIgnore=['__pycache__$']
 " Close buffer shortcut
 nnoremap <leader>d :bd<CR>
 
+" Search shortcut
+nnoremap <leader>s :Rg 
+
 " Tmuxline configuration
 let g:tmuxline_preset = {
       \'a' : '#(whoami)@#H',
@@ -204,9 +209,8 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Prosession configuration
 let g:prosession_dir = "~/.local/share/nvim/session/"
 let g:prosession_tmux_title = 1
-let g:prosession_on_startup = 1
 
-" Neomake
+" Neomake configuration
 
 " Configure python under neomake
 let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle']
@@ -237,7 +241,13 @@ endif
 call neomake#configure#automake('rw', 1000)
 
 " Autoformat python files using black
-"autocmd BufWritePre *.py execute ':Black'
+if empty($NO_AUTOBLACK)
+      autocmd BufWritePre *.py execute ':Black'
+endif
 
 " Groovy syntax highlighting for jenkinsfile
 au BufNewFile,BufRead Jenkinsfile set filetype=groovy
+
+" Terraform configuration
+let g:terraform_align = 1
+let g:terraform_fmt_on_save = 1
