@@ -41,7 +41,7 @@ Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 Plug 'neomake/neomake'
 Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'brooth/far.vim'
-Plug 'psf/black', {'for': 'python'}
+Plug 'psf/black', {'for': 'python', 'tag': '19.10b0'}
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'posva/vim-vue', {'for': 'vue'}
@@ -50,6 +50,10 @@ Plug 'jparise/vim-graphql', {'for': 'graphql'}
 Plug 'janko/vim-test'
 Plug 'mgedmin/coverage-highlight.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mtth/scratch.vim'
+Plug 'petobens/poet-v', {'for': 'python'}
+Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'shumphrey/fugitive-gitlab.vim'
 
 call plug#end()
 
@@ -251,3 +255,7 @@ au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 " Terraform configuration
 let g:terraform_align = 1
 let g:terraform_fmt_on_save = 1
+
+" Poet-v configuration
+let g:poetv_executables = ['poetry']
+let g:poetv_auto_activate = 1
