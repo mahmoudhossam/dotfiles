@@ -1,13 +1,6 @@
 export ADOTDIR=$HOME/.antigen
 export ANTIGEN_BUNDLES=$ADOTDIR/bundles
-#export POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
-export POWERLEVEL9K_STATUS_VERBOSE=false
-export POWERLEVEL9K_MODE='nerdfont-complete'
-export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 export TERM="screen-256color"
-export TERMINAL=kitty
 export DISABLE_AUTO_TITLE="true"
 # Use antigen
 source $ADOTDIR/antigen.zsh
@@ -15,11 +8,10 @@ source $ADOTDIR/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-antigen theme romkatv/powerlevel10k powerlevel10k
+# Theme
+antigen theme sobolevn/sobole-zsh-theme
+export SOBOLE_THEME_MODE="dark"
+export SOBOLE_DONOTTOUCH_HIGHLIGHTING='true'
 
 # Aliases
 alias zshconfig='"$EDITOR" ~/.zshrc'
@@ -27,10 +19,12 @@ alias gpr="git pull-request"
 alias gap="git apply"
 alias gma="git merge abort"
 alias v="nvim"
+alias f="ranger"
 alias kc="kubectl"
 alias dcupd="docker-compose up -d"
 alias reload="source ~/.zshrc"
 alias tf="terraform"
+alias jn="jupyter notebook"
 
 # Display red dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -46,22 +40,23 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle fabric
-antigen bundle vagrant
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle virtualenv
 antigen bundle tmux
 antigen bundle git-extras
 antigen bundle z
-antigen bundle StackExchange/blackbox
+antigen bundle pyenv
 antigen bundle zchee/go-zsh-completions
 antigen bundle romkatv/gitstatus
+antigen bundle poetry
+antigen bundle direnv
 
 antigen apply
 
-export GOPATH=/home/mahmoud/Projects/Go
+export GOPATH=$HOME/Projects/Go
 
-export PATH=/usr/sbin:/sbin:$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$HOME/.local/bin/:$PATH
+export PATH=/usr/sbin:/sbin:$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$HOME/.local/bin:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
 . /usr/share/fzf/key-bindings.zsh
@@ -79,8 +74,6 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 # enable "fuck"
 eval $(thefuck --alias)
-
-export XDG_CONFIG_HOME="$HOME/.config"
 
 export WINEARCH=win32
 
