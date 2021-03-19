@@ -1,59 +1,51 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'hashivim/vim-terraform'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug '/usr/bin/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-slash'
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/neco-vim', {'for': 'vim'}
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
-Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
 Plug 'pearofducks/ansible-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
+Plug 'junegunn/gv.vim'
 Plug 'dhruvasagar/vim-prosession'
-Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 Plug 'neomake/neomake'
 Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'brooth/far.vim'
-Plug 'psf/black', {'for': 'python', 'tag': '19.10b0'}
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'posva/vim-vue', {'for': 'vue'}
-Plug 'hashivim/vim-terraform', {'for': 'terraform'}
-Plug 'jparise/vim-graphql', {'for': 'graphql'}
 Plug 'janko/vim-test'
 Plug 'mgedmin/coverage-highlight.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mtth/scratch.vim'
-Plug 'petobens/poet-v', {'for': 'python'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
-Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vimwiki/vimwiki'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
@@ -95,6 +87,8 @@ set confirm
 set noshowmode
 " Don't require saving buffer contents before switching to another
 set hidden
+" Ignore case when searching (needed for smartcase)
+set ignorecase
 " Use smartcase behavior in search
 set smartcase
 " Highlight the line with the cursor
@@ -112,9 +106,10 @@ autocmd VimEnter * wincmd p
 set clipboard+=unnamedplus
 " Use vertically splitted diffs by default
 set diffopt+=vertical
-
 " Use the mouse
 set mouse=a
+" Always show the signcolumn
+set signcolumn=yes
 
 " fzf shortcuts
 nnoremap <leader>f :Files<CR>
@@ -124,50 +119,17 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>l :Commits<CR>
 nnoremap <leader>w :Windows<CR>
 
-" Pymode configuration
-
-let g:pymode_breakpoint_bind = '<leader>k'
-
-let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
-
-let g:pymode_rope_lookup_project = 0
-
-let g:pymode_folding = 0
-
-let g:pymode_rope_regenerate_on_write = 0
-
-let g:pymode_rope = 1
-
-let g:pymode_rope_completion = 0
-
-let g:pymode_rope_autoimport = 1
-
-let g:pymode_rope_autoimport_bind = '<leader>m'
-
-let g:pymode_lint = 0
-
-let g:pymode_options_max_line_length = 120
-
-let g:pymode_rope_goto_definition_cmd = 'e'
+" FZF configuration
+let g:fzf_nvim_statusline = 0
 
 " Base16 theme configuration
 let base16colorspace=256
 
-colo base16-onedark
+colo base16-tomorrow-night
 
 " Python provider configuration
 let g:python_host_prog  = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
-
-" Deoplete configuration
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#sources = {}
-let g:deoplete#sources.py = ['file', 'ultisnips', 'jedi']
-let g:deoplete#sources#jedi#show_docstring = 1
-let g:deoplete#delimiters = ['/', '.']
-autocmd CompleteDone * pclose!
 
 " Echodoc configuration
 let g:echodoc_enable_at_startup = 1
@@ -178,12 +140,11 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " vim-airline configuration
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='base16_tomorrow'
 
 " NERDTREE configuration
 " Leader + n toggles NERDTREE
 map <leader>n :NERDTreeToggle<CR>
-" Close vim if the only window left open is a NERDTREE
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeIgnore=['__pycache__$']
 
 " Close buffer shortcut
@@ -194,10 +155,12 @@ nnoremap <leader>s :Rg
 
 " Tmuxline configuration
 let g:tmuxline_preset = {
-      \'a' : '#(whoami)@#H',
+      \'a' : '#S',
       \'win' : ['#I', '#W'],
-      \'cwin': ['#I', '#F#W'],
-      \'y' : ['#{battery_icon} #{battery_percentage}', '#{cpu_icon} #{cpu_percentage}', '%R', '%a %d/%m/%Y']}
+      \'cwin': ['#I', '#W#F'],
+      \'y' : ['#{cpu_percentage}', '%R', '%a %d/%m/%Y'],
+      \'z' : '#H'}
+
 " Ultisnips configuration
 let g:UltiSnipsSnippetsDir='~/.local/share/nvim/plugged/vim-snippets/UltiSnips'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -213,49 +176,60 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Prosession configuration
 let g:prosession_dir = "~/.local/share/nvim/session/"
 let g:prosession_tmux_title = 1
+let g:prosession_on_startup = 1
 
 " Neomake configuration
-
-" Configure python under neomake
-let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle']
-
-if filereadable("setup.cfg")
-      let g:neomake_python_pycodestyle_maker = {
-              \ 'args': ['--config=setup.cfg'],
-              \ 'errorformat': '%f:%l:%c: %m',
-              \ }
-
-      let g:neomake_python_pylint_maker = {
-            \ 'args': ['--config=setup.cfg'],
-            \ 'errorformat': '%f:%l:%c: %m',
-            \ }
-else
-      let g:neomake_python_pycodestyle_maker = {
-              \ 'args': ['--max-line-length=120', '--ignore=W292,R0903'],
-              \ 'errorformat': '%f:%l:%c: %m',
-              \ }
-
-      let g:neomake_python_pylint_maker = {
-            \ 'args': ['--max-line-length=120', '--disable=C0111,D101,W1203'],
-            \ 'errorformat': '%f:%l:%c: %m',
-            \ }
-endif
-
 " Run Neomake when reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
 
-" Autoformat python files using black
-if empty($NO_AUTOBLACK)
-      autocmd BufWritePre *.py execute ':Black'
-endif
+let g:neomake_python_pylint_maker = {
+      \ 'args': ['--extension-pkg-whitelist=pydantic'],
+      \ }
+
+" Fugitive-Gitlab configuration
+let g:fugitive_gitlab_domains = ['https://gitlab.rtrsupport.de']
 
 " Groovy syntax highlighting for jenkinsfile
 au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
-" Terraform configuration
+" coc.nvim configuration
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Override <CR> to work with coc.nvim completions
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Shortcut for organizing imports of the current buffer.
+nnoremap <leader>o :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+
+" Far.vim configuration
+let g:far#source = 'rg'
+
+" vim-terraform configuration
 let g:terraform_align = 1
 let g:terraform_fmt_on_save = 1
 
-" Poet-v configuration
-let g:poetv_executables = ['poetry']
-let g:poetv_auto_activate = 1
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Tagbar configuration
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 1
+
+" Neovim terminal configuration
+" Start in insert mode
+autocmd TermOpen * startinsert
+" Start terminal under the current buffer with shortcut
+nnoremap <leader>e :below split \| resize 10 \| te<CR>
