@@ -2,6 +2,7 @@ export ADOTDIR=$HOME/.antigen
 export ANTIGEN_BUNDLES=$ADOTDIR/bundles
 export TERM="screen-256color"
 export DISABLE_AUTO_TITLE="true"
+export ZSH_TMUX_AUTOSTART="true"
 # Use antigen
 source $ADOTDIR/antigen.zsh
 
@@ -56,7 +57,7 @@ antigen apply
 
 export GOPATH=$HOME/Projects/Go
 
-export PATH=/usr/sbin:/sbin:$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$HOME/.local/bin:$PATH
+export PATH=$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:/usr/bin/core_perl:$HOME/.local/bin:$PATH
 
 # Use fzf https://github.com/junegunn/fzf
 . /usr/share/fzf/key-bindings.zsh
