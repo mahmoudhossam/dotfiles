@@ -46,6 +46,10 @@ Plug 'vimwiki/vimwiki'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'psliwka/vim-smoothie'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
@@ -112,10 +116,10 @@ set mouse=a
 set signcolumn=yes
 
 " fzf shortcuts
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>f <cmd>Telescope find_files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>s :GFiles?<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>b <cmd>Telescope buffers<CR>
 nnoremap <leader>l :Commits<CR>
 nnoremap <leader>w :Windows<CR>
 
@@ -151,7 +155,7 @@ let NERDTreeIgnore=['__pycache__$']
 nnoremap <leader>d :bd<CR>
 
 " Search shortcut
-nnoremap <leader>s :Rg 
+nnoremap <leader>s <cmd>Telescope live_grep<CR> 
 
 " Tmuxline configuration
 let g:tmuxline_preset = {
@@ -233,3 +237,27 @@ let g:tagbar_autoclose = 1
 autocmd TermOpen * startinsert
 " Start terminal under the current buffer with shortcut
 nnoremap <leader>e :below split \| resize 10 \| te<CR>
+
+" Lua config
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true
+  }
+}
+
+local telescope_actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = telescope_actions.close
+      },
+    },
+  }
+}
+EOF
