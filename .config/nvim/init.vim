@@ -46,6 +46,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'psliwka/vim-smoothie'
+Plug 'ayu-theme/ayu-vim'
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -129,7 +131,7 @@ let g:fzf_nvim_statusline = 0
 " Base16 theme configuration
 let base16colorspace=256
 
-colo base16-tomorrow-night
+colo base16-seti
 
 " Python provider configuration
 let g:python_host_prog  = '/usr/bin/python2'
@@ -144,7 +146,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " vim-airline configuration
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16_tomorrow'
+let g:airline_theme='base16_seti'
 
 " NERDTREE configuration
 " Leader + n toggles NERDTREE
