@@ -7,17 +7,16 @@ Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
+Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'preservim/tagbar', {'on': 'TagbarToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'hashivim/vim-terraform'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
+Plug 'janko/vim-test'
 Plug '/usr/bin/fzf'
 Plug 'Shougo/echodoc.vim'
 Plug 'chriskempson/base16-vim'
@@ -28,25 +27,23 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
-Plug 'junegunn/gv.vim'
 Plug 'dhruvasagar/vim-prosession'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'neomake/neomake'
-Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'brooth/far.vim'
-Plug 'andrewstuart/vim-kubernetes'
-Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
-Plug 'posva/vim-vue', {'for': 'vue'}
-Plug 'janko/vim-test'
 Plug 'mgedmin/coverage-highlight.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mtth/scratch.vim'
-Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'psliwka/vim-smoothie'
-Plug 'ayu-theme/ayu-vim'
+Plug 'stephpy/vim-yaml', {'for': 'yaml'}
+Plug 'andrewstuart/vim-kubernetes', {'for': 'yaml'}
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdate'}
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/popup.nvim'
