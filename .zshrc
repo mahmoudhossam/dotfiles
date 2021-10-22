@@ -2,7 +2,6 @@ export ADOTDIR=$HOME/.antigen
 export ANTIGEN_BUNDLES=$ADOTDIR/bundles
 export TERM="screen-256color"
 export DISABLE_AUTO_TITLE="true"
-export ZSH_TMUX_AUTOSTART="true"
 # Use antigen
 source $ADOTDIR/antigen.zsh
 
@@ -12,7 +11,7 @@ antigen use oh-my-zsh
 # Theme
 antigen theme sobolevn/sobole-zsh-theme
 export SOBOLE_THEME_MODE="dark"
-export SOBOLE_DONOTTOUCH_HIGHLIGHTING='true'
+export SOBOLE_DONOTTOUCH_HIGHLIGHTING="true"
 
 # Aliases
 alias zshconfig='"$EDITOR" ~/.zshrc'
@@ -22,7 +21,6 @@ alias gma="git merge abort"
 alias v="nvim"
 alias f="ranger"
 alias kc="kubectl"
-alias dcupd="docker-compose up -d"
 alias reload="source ~/.zshrc"
 alias tf="terraform"
 alias jn="jupyter notebook"
@@ -47,10 +45,8 @@ antigen bundle virtualenv
 antigen bundle tmux
 antigen bundle git-extras
 antigen bundle z
-antigen bundle pyenv
 antigen bundle zchee/go-zsh-completions
 antigen bundle romkatv/gitstatus
-antigen bundle poetry
 antigen bundle direnv
 
 antigen apply
@@ -86,7 +82,9 @@ eval $(keychain --eval --quiet --noask `ls ~/.ssh/id_^*pub`)
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/vault vault
+export NODE_VERSIONS=$HOME/.nvm/versions/node/
+
 # Load nvm
 source /usr/share/nvm/init-nvm.sh
+# Configure KDE 5 applications
+export QT_QPA_PLATFORMTHEME=qt5ct

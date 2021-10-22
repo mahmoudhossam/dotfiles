@@ -67,20 +67,10 @@ set number
 set tabstop=4
 " Set reindent '<<' and '>>' width
 set shiftwidth=4
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
 " Don’t show the intro message when starting vim
 set shortmess=atI
-" Show the current mode
-set showmode
 " Show the filename in the window titlebar
 set title
-" Show the (partial) command as it’s being typed
-set showcmd
 " Convert tabs to spaces
 set expandtab
 " Instead of failing a command because of unsaved changes, instead raise a
@@ -88,8 +78,6 @@ set expandtab
 set confirm
 " Airline already shows this information, so disable it
 set noshowmode
-" Don't require saving buffer contents before switching to another
-set hidden
 " Ignore case when searching (needed for smartcase)
 set ignorecase
 " Use smartcase behavior in search
@@ -180,6 +168,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:prosession_dir = "~/.local/share/nvim/session/"
 let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 1
+let g:prosession_tmux_title_format = "neovim - @@@"
 
 " Neomake configuration
 " Run Neomake when reading a buffer (after 1s), and when writing.
