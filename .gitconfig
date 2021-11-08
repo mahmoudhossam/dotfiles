@@ -1,7 +1,6 @@
 [user]
     name = Mahmoud Hossam
-    email = mahmoud.h.hanafy@gmail.com
-    signingkey = D93BB4FD958BBDC3
+    email = mahmoudhossam@users.noreply.github.com
 [color]
     diff   = auto
     status = auto
@@ -9,26 +8,19 @@
 [push]
     default = simple
 [core]
-    editor = vim
+    editor = nvim
     excludesfile = ~/.gitignore
     pager = diff-so-fancy | less --tabs=4 -RFX
-[instaweb]
-    browser = google-chrome
-    local = true
 [credential]
-    helper = cache --timeout=7200
+    helper = libsecret
 [alias]
     patch = -c core.pager="" show --no-color
 [merge]
-    tool= meld
+    tool = meld
 [diff]
-    tool=vimdiff
+    tool = meld
 [gui]
     displayuntracked = true
 [cola]
     checkconflicts = true
     spellcheck = false
-[diff "blackbox"]
-    textconv = gpg --use-agent -q --batch --decrypt
-[commit]
-    gpgsign = true
