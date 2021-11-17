@@ -1,12 +1,12 @@
 [user]
-    name = Mahmoud Hossam
+    name = Mahmoud Hanafy
     email = mahmoudhossam@users.noreply.github.com
 [color]
     diff   = auto
     status = auto
     branch = auto
 [push]
-    default = simple
+    default = current
 [core]
     editor = nvim
     excludesfile = ~/.gitignore
@@ -24,3 +24,5 @@
 [cola]
     checkconflicts = true
     spellcheck = false
+[init]
+    defaultBranch = main
