@@ -1,5 +1,23 @@
 {
-  "python.formatting.provider": "black",
-  "python.linting.flake8Enabled": true,
-  "python.analysis.diagnosticMode": "workspace"
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "go.goplsPath": "/home/mahmoud/Projects/Go/bin/gopls",
+    "go.goplsOptions": {
+        "completeUnimported": true
+    },
+    "yaml.format.enable": true,
+    "languageserver": {
+        "terraform": {
+            "command": "terraform-ls",
+            "args": [
+                "serve"
+            ],
+            "filetypes": [
+                "terraform",
+                "tf"
+            ],
+            "initializationOptions": {}
+        }
+    }
 }

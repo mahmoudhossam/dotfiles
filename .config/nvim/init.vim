@@ -7,6 +7,7 @@ Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'preservim/tagbar', {'on': 'TagbarToggle'}
@@ -28,8 +29,6 @@ Plug 'SirVer/ultisnips'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'dhruvasagar/vim-prosession'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'neomake/neomake'
 Plug 'brooth/far.vim'
 Plug 'mgedmin/coverage-highlight.vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -42,13 +41,18 @@ Plug 'andrewstuart/vim-kubernetes', {'for': 'yaml'}
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdate'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'github/copilot.vim'
+Plug 'dhruvasagar/vim-zoom'
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
@@ -91,6 +95,8 @@ noremap <Leader>t :TagbarToggle<CR>
 " Easier tab switching
 nnoremap <Leader><Tab> :bn<CR>
 nnoremap <Leader><S-Tab> :bp<CR>
+" Close buffer shortcut
+nnoremap <leader>d :bd<CR>
 " Go to previous (last accessed) window.
 autocmd VimEnter * wincmd p
 " Use system clipboard
@@ -101,22 +107,24 @@ set diffopt+=vertical
 set mouse=a
 " Always show the signcolumn
 set signcolumn=yes
+" Enable hidden buffers
+set hidden
+" Enable modeline
+set modeline
 
-" fzf shortcuts
+" Telescope shortcuts
 nnoremap <leader>f <cmd>Telescope find_files<CR>
-nnoremap <leader>g :GFiles<CR>
-nnoremap <leader>s :GFiles?<CR>
+nnoremap <leader>s <cmd>Telescope git_status<CR>
 nnoremap <leader>b <cmd>Telescope buffers<CR>
-nnoremap <leader>l :Commits<CR>
-nnoremap <leader>w :Windows<CR>
+nnoremap <leader>l <cmd>Telescope git_commits<CR>
+nnoremap <leader>h <cmd>Telescope oldfiles<CR>
+nnoremap <leader>s <cmd>Telescope live_grep<CR>
 
 " FZF configuration
 let g:fzf_nvim_statusline = 0
 
 " Base16 theme configuration
 let base16colorspace=256
-
-colo base16-seti
 
 " Python provider configuration
 let g:python_host_prog  = '/usr/bin/python2'
@@ -131,18 +139,21 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " vim-airline configuration
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16_seti'
+let g:airline_focuslost_inactive = 0
+
+" Choose theme based on time of day
+let now = strftime("%H")
+let theme = trim(system("dconf read /org/gnome/desktop/interface/color-scheme"))
+if theme == "'default'"
+  colo base16-tomorrow
+else
+  colo base16-tomorrow-night
+endif
 
 " NERDTREE configuration
 " Leader + n toggles NERDTREE
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['__pycache__$']
-
-" Close buffer shortcut
-nnoremap <leader>d :bd<CR>
-
-" Search shortcut
-nnoremap <leader>s <cmd>Telescope live_grep<CR> 
 
 " Tmuxline configuration
 let g:tmuxline_preset = {
@@ -170,17 +181,6 @@ let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 1
 let g:prosession_tmux_title_format = "neovim - @@@"
 
-" Neomake configuration
-" Run Neomake when reading a buffer (after 1s), and when writing.
-call neomake#configure#automake('rw', 1000)
-
-let g:neomake_python_pylint_maker = {
-      \ 'args': ['--extension-pkg-whitelist=pydantic'],
-      \ }
-
-" Fugitive-Gitlab configuration
-let g:fugitive_gitlab_domains = ['https://gitlab.rtrsupport.de']
-
 " Groovy syntax highlighting for jenkinsfile
 au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
@@ -196,14 +196,20 @@ nmap <silent> gr <Plug>(coc-references)
 " Override <CR> to work with coc.nvim completions
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
+" Map yaml.ansible to the correct type
+let g:coc_filetype_map = {
+  \ 'yaml.ansible': 'ansible',
+  \ }
+
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
-" Shortcut for organizing imports of the current buffer.
-nnoremap <leader>o :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+" Coc-nvim action mappings
+nnoremap <leader>o :call CocAction('organizeImport')<CR>
+nnoremap <leader>m :call CocAction('format')<CR>
 
 " Far.vim configuration
 let g:far#source = 'rg'
@@ -227,25 +233,4 @@ autocmd TermOpen * startinsert
 nnoremap <leader>e :below split \| resize 10 \| te<CR>
 
 " Lua config
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true
-  }
-}
-
-local telescope_actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = telescope_actions.close
-      },
-    },
-  }
-}
-EOF
+luafile ~/.config/nvim/lua/init.lua
