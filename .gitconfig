@@ -1,6 +1,7 @@
 [user]
     name = Mahmoud Hanafy
     email = mahmoudhossam@users.noreply.github.com
+	signingkey = 958BBDC3
 [color]
     diff   = auto
     status = auto
@@ -10,19 +11,44 @@
 [core]
     editor = nvim
     excludesfile = ~/.gitignore
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    hyperlinks = true  # open hyperlinks in the default browser
+    syntax-theme = GitHub
+    #syntax-theme = base16
 [credential]
     helper = libsecret
 [alias]
     patch = -c core.pager="" show --no-color
+    co = checkout
+    cob = checkout -b
+    del = branch -D    
+    undo = reset HEAD~1 --mixed
 [merge]
     tool = meld
+    conflictstyle = diff3
 [diff]
     tool = meld
+    colorMoved = default
 [gui]
     displayuntracked = true
+    editor = nvim
+    historybrowser = gitk
 [cola]
     checkconflicts = true
     spellcheck = false
+    startupmode = list
+    expandtab = true
+    theme = flat-dark-grey
+    icontheme = dark
+    fontdiff = Source Code Pro,11,-1,5,50,0,0,0,0,0
+    blameviewer = git gui blame
 [init]
     defaultBranch = main
+[branch]
+	autosetuprebase = always
+[commit]
+	gpgSign = true
