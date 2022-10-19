@@ -1,6 +1,6 @@
 export ADOTDIR=$HOME/.antigen
 export ANTIGEN_BUNDLES=$ADOTDIR/bundles
-export TERM="screen-256color"
+export TERM="tmux-256color"
 export DISABLE_AUTO_TITLE="true"
 export SUDO_ASKPASS=/usr/lib/seahorse/ssh-askpass
 export VISUAL=nvim
@@ -16,6 +16,7 @@ antigen use oh-my-zsh
 # Aliases
 alias zshconfig='"$EDITOR" ~/.zshrc'
 alias gpr="git pull-request"
+alias gpt="git push --tags"
 alias gap="git apply"
 alias gma="git merge abort"
 alias v="nvim"
@@ -69,9 +70,11 @@ export PATH=$GOPATH/bin:$(ruby -e "puts Gem.user_dir")/bin:$HOME/.local/bin:$HOM
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files -L'
 
-# Use base16 theme
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# Base16 Shell
+BASE16_SHELL_PATH="$HOME/.config/base16-shell"
+[ -n "$PS1" ] && \
+  [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && \
+    source "$BASE16_SHELL_PATH/profile_helper.sh"
 
 # enable "fuck"
 eval $(thefuck --alias)
@@ -105,3 +108,5 @@ gch() {
 
 # Use gpg agent as SSH agent
 export SSH_AUTH_SOCK=/run/user/1000/gnupg/S.gpg-agent.ssh
+
+[[ -s "/home/mahmoud/.gvm/scripts/gvm" ]] && source "/home/mahmoud/.gvm/scripts/gvm"

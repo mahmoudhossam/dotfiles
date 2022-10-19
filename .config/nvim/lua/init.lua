@@ -36,3 +36,4 @@ telescope.setup{
     },
   },
 }
+require("coverage").setup()

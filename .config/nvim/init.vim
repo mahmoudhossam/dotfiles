@@ -10,7 +10,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'preservim/tagbar', {'on': 'TagbarToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-signify'
@@ -20,7 +19,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'janko/vim-test'
 Plug '/usr/bin/fzf'
 Plug 'Shougo/echodoc.vim'
-Plug 'chriskempson/base16-vim'
+Plug 'base16-project/base16-vim'
 Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
 Plug 'pearofducks/ansible-vim'
@@ -30,7 +29,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'brooth/far.vim'
-Plug 'mgedmin/coverage-highlight.vim'
+Plug 'andythigpen/nvim-coverage'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mtth/scratch.vim'
 Plug 'ryanoasis/vim-devicons'
@@ -50,7 +49,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'github/copilot.vim'
+Plug 'nvim-pack/nvim-spectre'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'wakatime/vim-wakatime'
 
@@ -90,8 +89,6 @@ set smartcase
 set cursorline
 " Don't wrap lines
 set nowrap
-" Set Tagbar shortcut
-noremap <Leader>t :TagbarToggle<CR>
 " Easier tab switching
 nnoremap <Leader><Tab> :bn<CR>
 nnoremap <Leader><S-Tab> :bp<CR>
@@ -111,6 +108,11 @@ set signcolumn=yes
 set hidden
 " Enable modeline
 set modeline
+" Disable backup files
+set nobackup
+set nowritebackup
+" Shorter update time
+set updatetime=300
 
 " Telescope shortcuts
 nnoremap <leader>f <cmd>Telescope find_files<CR>
@@ -185,6 +187,16 @@ let g:prosession_tmux_title_format = "neovim - @@@"
 au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 " coc.nvim configuration
+" Set outline shortcut
+nnoremap <silent><nowait> <leader>t  :call ToggleOutline()<CR>
+function! ToggleOutline() abort
+  let winid = coc#window#find('cocViewId', 'OUTLINE')
+  if winid == -1
+    call CocActionAsync('showOutline', 1)
+  else
+    call coc#window#close(winid)
+  endif
+endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " GoTo code navigation.
@@ -193,8 +205,22 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Override <CR> to work with coc.nvim completions
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" Use tab to trigger completion and navigation.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Map yaml.ansible to the correct type
 let g:coc_filetype_map = {
@@ -214,17 +240,14 @@ nnoremap <leader>m :call CocAction('format')<CR>
 " Far.vim configuration
 let g:far#source = 'rg'
 
+" Spectre configuration
+nnoremap <leader>S <cmd>lua require('spectre').open()<CR>
+
 " vim-terraform configuration
 let g:terraform_align = 1
 let g:terraform_fmt_on_save = 1
 
-if (has("termguicolors"))
-  set termguicolors
-endif
-
-" Tagbar configuration
-let g:tagbar_autofocus = 1
-let g:tagbar_autoclose = 1
+set termguicolors
 
 " Neovim terminal configuration
 " Start in insert mode
