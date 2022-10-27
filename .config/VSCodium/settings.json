@@ -1,0 +1,49 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredLightColorTheme": "Tomorrow",
+    "workbench.preferredDarkColorTheme": "Tomorrow Night",
+    "go.gopath": "/home/mahmoud/Projects/Go",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 15,
+    "editor.minimap.enabled": false,
+    "editor.smoothScrolling": true,
+    "vim.cursorStylePerMode.insert": "line",
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.cursorStylePerMode.replace": "underline",
+    "vim.cursorStylePerMode.visual": "block-outline",
+    "vim.cursorStylePerMode.visualblock": "block-outline",
+    "vim.hlsearch": true,
+    "vim.leader": ",",
+    "vim.shell": "/usr/bin/zsh",
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.terminal.toggleTerminal"]
+        },
+        {
+            "before": ["<leader>", "f"],
+            "commands": ["workbench.action.quickOpen"],
+            "silent": true
+        },
+        {
+            "before": ["<leader>", "tab"],
+            "commands": ["workbench.action.nextEditor"],
+            "silent": true
+        },
+        {
+            "before": ["<leader>", "d"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        },
+        {
+            "before": ["<leader>", "|"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        }
+    ],
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.codeLens.enabled": false,
+    "workbench.colorTheme": "Tomorrow Night",
+    "explorer.confirmDelete": false
+}
